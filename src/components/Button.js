@@ -1,15 +1,11 @@
-import React from 'react'
+import React from "react";
 
-const Button = ({ color, text}) => {
+const Button = ({ color, text }) => {
+  return (
+    <button className="menubutton" style={{ color: color }}>
+      {text}
+    </button>
+  );
+};
 
-    
-
-    return (
-    
- <button 
- className='menubutton' 
- style ={{color:color}} >{text}</button>
-    )
-}
-
-export default Button
+export default Button;
