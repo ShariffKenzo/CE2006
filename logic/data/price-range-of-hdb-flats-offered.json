@@ -1,0 +1,34 @@
+{
+    "financial_year": [
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019
+    ],
+    "town": [
+        "Bukit Batok",
+        "Bukit Panjang",
+        "Choa Chu Kang",
+        "Jurong West",
+        "Punggol",
+        "Sembawang",
+        "Sengkang",
+        "Tengah",
+        "Woodlands",
+        "Yishun"
+    ],
+    "room_type": [
+        "2-room",
+        "3-room",
+        "4-room",
+        "5-room"
+    ]
+}
