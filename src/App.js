@@ -11,6 +11,7 @@ import { Dropdown } from "reactstrap";
 import StreetDropdown from "./components/StreetDropdown";
 import FlatTypeDropdown from "./components/FlatTypeDropdown";
 import Testdropdown from "./components/Testdropdown";
+import Table from "./components/Table";
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
     <frag><Backgroundimg /></frag>
     <frag><SimpleMap className="Googlemaps" /></frag>
     
+    <frag ><Table /></frag>
       
 
 

@@ -1,0 +1,99 @@
+[
+    {
+      "Month": "2021-10",
+      "Town": "BISHAN",
+      "FlatType": "MULTI-GENERATION",
+      "Block": "148",
+      "StreetName": "BISHAN ST 11",
+      "StoreyRange": "1-3",
+      "FloorArea": "134",
+      "FlatModel": "Multi Generation",
+      "LeaseCommencementDate":"1987",
+      "ResalePrice":"815,000"
+    },
+    {
+        "Month": "2020-10",
+        "Town": "PASIR RIS",
+        "FlatType": "MULTI-GENERATION",
+        "Block": "345",
+        "StreetName": "Pasir Ris ST 24",
+        "StoreyRange": "5-7",
+        "FloorArea": "218",
+        "FlatModel": "Executive",
+        "LeaseCommencementDate":"1995",
+        "ResalePrice":"500,000"
+      },
+      {
+        "Month": "2021-10",
+        "Town": "Tampines",
+        "FlatType": "MULTI-GENERATION",
+        "Block": "435",
+        "StreetName": "Tampines ST 44",
+        "StoreyRange": "2-3",
+        "FloorArea": "413",
+        "FlatModel": "Multi Generation",
+        "LeaseCommencementDate":"1987",
+        "ResalePrice":"766,000"
+      },
+      {
+        "Month": "2021-10",
+        "Town": "Pioneer",
+        "FlatType": "MULTI-GENERATION",
+        "Block": "213",
+        "StreetName": "Pioneer ST 43",
+        "StoreyRange": "9-11",
+        "FloorArea": "213",
+        "FlatModel": "Multi Generation",
+        "LeaseCommencementDate":"2010",
+        "ResalePrice":"873,000"
+      },
+      {
+        "Month": "2021-10",
+        "Town": "Bedok",
+        "FlatType": "Mansionette",
+        "Block": "651",
+        "StreetName": "Bedok ST 43",
+        "StoreyRange": "1",
+        "FloorArea": "325",
+        "FlatModel": "Executive",
+        "LeaseCommencementDate":"1998",
+        "ResalePrice":"981,000"
+      },
+      {
+        "Month": "2021-10",
+        "Town": "Bedok",
+        "FlatType": "Mansionette",
+        "Block": "651",
+        "StreetName": "Bedok ST 43",
+        "StoreyRange": "1",
+        "FloorArea": "325",
+        "FlatModel": "Executive",
+        "LeaseCommencementDate":"1981",
+        "ResalePrice":"145,000"
+      },
+      {
+        "Month": "2021-10",
+        "Town": "Ang Mo Kio",
+        "FlatType": "Mansionette",
+        "Block": "123",
+        "StreetName": "Ang Mo Kio ST 43",
+        "StoreyRange": "1",
+        "FloorArea": "325",
+        "FlatModel": "Executive",
+        "LeaseCommencementDate":"1978",
+        "ResalePrice":"324,000"
+      },
+      {
+        "Month": "2021-10",
+        "Town": "Clementi",
+        "FlatType": "Mansionette",
+        "Block": "123",
+        "StreetName": "Clementi ST 43",
+        "StoreyRange": "1",
+        "FloorArea": "325",
+        "FlatModel": "Executive",
+        "LeaseCommencementDate":"1998",
+        "ResalePrice":"531,000"
+      }
+    
+  ]
