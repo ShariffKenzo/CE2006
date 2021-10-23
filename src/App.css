@@ -24,6 +24,21 @@
   align-items: center;
 }
 
+.newbuttons{
+
+  font-size:x-large;
+  text-align: center;
+  color: rgb(255, 243, 131);
+  
+  border-radius: 10%;
+  padding-inline-end: 30px;
+  
+
+  position: relative;
+  align-items: center;
+
+}
+
 .Logo {
   flex: 1;
   height: 100vh;

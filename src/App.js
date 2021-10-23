@@ -12,25 +12,19 @@ import StreetDropdown from "./components/StreetDropdown";
 import FlatTypeDropdown from "./components/FlatTypeDropdown";
 import Testdropdown from "./components/Testdropdown";
 import Table from "./components/Table";
-
+import Home from "./Screens/Home";
+import NearbyAmenities from "./Screens/NearbyAmenities";
+import PricingTrends from "./Screens/PricingTrends";
+import { Route, Link } from "react-router-dom";
+import NAVBar from "./components/NAVBar";
 
 function App() {
   return (
-    
-     <div>
-    <frag><Header /></frag>
-    <frag className ="town"><TownDropdown/></frag>
-    <frag className ="street"><StreetDropdown/></frag>
-    <frag className ="flattype"><FlatTypeDropdown/></frag>
-    
-    <frag><Backgroundimg /></frag>
-    <frag><SimpleMap className="Googlemaps" /></frag>
-    
-    <frag ><Table /></frag>
-      
-
-
-    </div>  
+    <div>
+      <Route exact path="/Home" component={Home} />
+      <Route exact path="/NearbyAmenities" component={NearbyAmenities} />
+      <Route exact path="/PricingTrends" component={PricingTrends} />
+    </div>
   );
 }
 
