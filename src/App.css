@@ -24,6 +24,21 @@
   align-items: center;
 }
 
+.newbuttons{
+
+  font-size:large;
+  text-align: center;
+  color: rgb(255, 243, 131);
+  
+  border-radius: 10%;
+  padding-inline-end: 30px;
+  
+
+  position: relative;
+  align-items: center;
+
+}
+
 .Logo {
   flex: 1;
   height: 100vh;
@@ -31,5 +46,88 @@
 }
 
 .Googlemaps {
-  font-size: large;
+
+  
+  
+  
 }
+
+.town{
+  font-size: large;
+  position: absolute;
+  right: 650px;
+  top: 8%;
+  font-size: large;
+  background-color: white;
+  font-weight: bold;
+
+}
+
+.street{
+  font-size: large;
+  position: absolute;
+  right: 550px;
+  top: 8%;
+  font-size: large;
+  background-color: white;
+  font-weight: bold; 
+}
+
+.flattype{
+  font-size: large;
+  position: absolute;
+  right: 430px;
+  top: 8%;
+  font-size: large;
+  background-color: white;
+  font-weight: bold; 
+  
+}
+
+/*   table   enclosed below*/
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 1rem;
+ 
+}
+
+table {
+  border-collapse: collapse;
+  width: 4%;
+}
+
+th,
+td {
+  border: 1px solid #ffffff;
+  text-align: left;
+  padding: 8px;
+  font-size: 9px;
+}
+
+th {
+  background-color: rgb(117, 201, 250);
+}
+
+td {
+  background-color: rgba(205, 235, 253, 0.8);
+}
+
+form {
+  display: flex;
+  gap: 5px;
+}
+
+form td:last-child {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+form * {
+  font-size: 28px;
+}
+
+
+/*   TABLE   enclosed above*/
