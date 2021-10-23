@@ -112,7 +112,7 @@ th {
 }
 
 td {
-  background-color: rgb(205, 235, 253);
+  background-color: rgba(205, 235, 253, 0.8);
 }
 
 form {
