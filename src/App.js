@@ -21,7 +21,8 @@ import NAVBar from "./components/NAVBar";
 function App() {
   return (
     <div>
-      <Route exact path="/Home" component={Home} />
+      
+      <Route exact path="/" component={Home} />
       <Route exact path="/NearbyAmenities" component={NearbyAmenities} />
       <Route exact path="/PricingTrends" component={PricingTrends} />
     </div>

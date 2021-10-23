@@ -28,7 +28,7 @@ const Header = () => {
       */}
 
       {/* NOTE :style links as buttons not  button as links */}
-      <Link className="newbuttons"  to = "/Home">Price Estimator</Link>
+      <Link className="newbuttons"  to = "/">Price Estimator</Link>
       <Link className="newbuttons" to = "/NearbyAmenities">Nearby Amenties</Link>
       <Link className="newbuttons"  to = "/PricingTrends">Pricing Trends</Link>
 
