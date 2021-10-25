@@ -1,7 +1,7 @@
 import * as govData from './govData.mjs';
 
 let resourceID =  "f1765b54-a209-4718-8d38-a39237f502b3";
-let params = {limit: 1}; //testing
+let params = {}; //testing
 let town = 'CHOA CHU KANG'
 
 //fetch the list of streets for a particular town
@@ -17,5 +17,5 @@ let filter = {
 };
 
 //finally, fetch actual data
-let data = await govData.getMain(resourceID, params, filter);
+let data = await govData.getMain(resourceID, params, filter, false);
 console.log(data);

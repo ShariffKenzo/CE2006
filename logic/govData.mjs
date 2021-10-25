@@ -16,11 +16,12 @@ const url = "https://data.gov.sg/api/action/datastore_search?"; //data.gov url
  * @param qParams Object, additional parameters
  * @param filters Object, key-value pairs of matching conditions  
  * (E.g. [col_name]:[matching_condition])  
- * @param getAll Boolean, set to true if retrieving ALL matching cases  
+ * @param getAll Boolean, used if retrieving ALL matching cases  
+ * If a query requires more than 100 results, set getAll to true
  * Warning: resulting object can get quite large
  * @returns Object, containing query results
  */
-export async function getMain(resourceID, qParams, filters, getAll) {
+export async function getMain(resourceID, qParams={}, filters={}, getAll=false) {
 
     let params = {
         resource_id : resourceID,
@@ -28,6 +29,16 @@ export async function getMain(resourceID, qParams, filters, getAll) {
     //concat the objs into params
     params = Object.assign(params, qParams);
     params['filters'] = JSON.stringify(filters);
+
+    //pre-fetch once to get the full count
+    //set the limit to this new count to get EVERYTHING
+    if (getAll) {
+        params['limit'] = 1;
+        let temp = await get(url + new URLSearchParams(params));
+        let total = temp['result']['total'];
+
+        params['limit'] = total;
+    }
     
     // uncomment the line below to print the request URL to console
     //console.log(url + new URLSearchParams(params));
