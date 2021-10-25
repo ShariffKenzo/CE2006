@@ -11,13 +11,13 @@ import fetch from 'node-fetch'; //use import for .mjs files
 const url = "https://data.gov.sg/api/action/datastore_search?"; //data.gov url
 
 /**
- * 
+ * Main function used to fetch from data.gov
  * @param resourceID String, ID of the database in govData
  * @param qParams Object, additional parameters
  * @param filters Object, key-value pairs of matching conditions  
- * (E.g. [col_name]:[matching_condition])  
- * @param getAll Boolean, used if retrieving ALL matching cases  
- * If a query requires more than 100 results, set getAll to true
+ * (E.g. [col_name] : [matching_condition])  
+ * @param getAll Boolean (optional), used if retrieving ALL matching cases  
+ * If a query requires more than 100 results, set getAll to true  
  * Warning: resulting object can get quite large
  * @returns Object, containing query results
  */
@@ -55,15 +55,11 @@ export async function getMain(resourceID, qParams={}, filters={}, getAll=false) 
  */  
 export async function getStreets(townName) {
     let resourceID = "f1765b54-a209-4718-8d38-a39237f502b3";
-    let qParams = {limit: 1};
     let filters = {town : townName};
 
-    let data = await getMain(resourceID, qParams, filters);
-    let total = data['total']; //extract total and query again
+    let data = await getMain(resourceID, {}, filters, true) //get all
 
-    qParams['limit'] = total;
-    data = await getMain(resourceID, qParams, filters);
-
+    let total = data['limit'];
     let streets = [];
     for (let i=0; i<total; i++) {
         streets.push(data['records'][i]['street_name']);
@@ -80,18 +76,13 @@ export async function getStreets(townName) {
  */
 export async function getBlocks(townName, streetName) {
     let resourceID = "f1765b54-a209-4718-8d38-a39237f502b3";
-    let qParams = {limit: 1};
     let filters = {
         town : townName,
         street_name : streetName
     };
+    let data = await getMain(resourceID, {}, filters, true) //get all
 
-    let data = await getMain(resourceID, qParams, filters);
-    let total = data['total']; //extract total and query again
-
-    qParams['limit'] = total; //add new limit
-    data = await getMain(resourceID, qParams, filters);
-
+    let total = data['limit'];
     let blocks = [];
     for(let i=0; i<total; i++) {
         blocks.push(data['records'][i]['block']);

@@ -17,5 +17,9 @@ let filter = {
 };
 
 //finally, fetch actual data
-let data = await govData.getMain(resourceID, params, filter, false);
+let data = await govData.getMain(resourceID, params, filter);
+
 console.log(data);
+console.log(town, streets);
+console.log(streets[0], blks);
+
