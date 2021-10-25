@@ -16,9 +16,11 @@ const url = "https://data.gov.sg/api/action/datastore_search?"; //data.gov url
  * @param qParams Object, additional parameters
  * @param filters Object, key-value pairs of matching conditions  
  * (E.g. [col_name]:[matching_condition])  
+ * @param getAll Boolean, set to true if retrieving ALL matching cases  
+ * Warning: resulting object can get quite large
  * @returns Object, containing query results
  */
-export async function getMain(resourceID, qParams, filters) {
+export async function getMain(resourceID, qParams, filters, getAll) {
 
     let params = {
         resource_id : resourceID,
@@ -27,7 +29,8 @@ export async function getMain(resourceID, qParams, filters) {
     params = Object.assign(params, qParams);
     params['filters'] = JSON.stringify(filters);
     
-    console.log(url + new URLSearchParams(params));
+    // uncomment the line below to print the request URL to console
+    //console.log(url + new URLSearchParams(params));
     var data = await get(url + new URLSearchParams(params));
 
     return (data['result']);
@@ -69,7 +72,7 @@ export async function getBlocks(townName, streetName) {
     let qParams = {limit: 1};
     let filters = {
         town : townName,
-        street : streetName
+        street_name : streetName
     };
 
     let data = await getMain(resourceID, qParams, filters);
@@ -79,7 +82,7 @@ export async function getBlocks(townName, streetName) {
     data = await getMain(resourceID, qParams, filters);
 
     let blocks = [];
-    for(let i=0; i<limit; i++) {
+    for(let i=0; i<total; i++) {
         blocks.push(data['records'][i]['block']);
     }
     return [...new Set(blocks)];
