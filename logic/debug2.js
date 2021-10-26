@@ -9,11 +9,13 @@ function readJSON(filePath) {
     return json;
 }
 
+//filepath is from 1 parent up from root
 const db = readJSON('./CE2006/logic/data/databases.json');
 // console.log(process.cwd());
 
-let index = 1
-let resourceID = db.resource_name[db.resource[index]].resource_id;
+let resourceID0 = db.resource_name[db.resource[0]].resource_id;
+let resourceID1 = db.resource_name[db.resource[1]].resource_id;
+
 // console.log(resourceID);
 // console.log(db);
 
@@ -24,10 +26,11 @@ let filters = {
     town: 'Bedok',
     flat_type: '5-room'
 }
-//let data = await govData.getMain(resourceID, params, filters, true);
+//let data = govData.getMain(resourceID, params, filters);
 //let data = await govData.getStreets('CENTRAL AREA')
-let data = govData.getHistory('CHOA CHU KANG','4-ROOM');
-
+let data = await govData.getHistory('Choa Chu Kang','executive');
+// let query = {q: 'executive'};
+// let data = await govData.getMain(resourceID0, query);
 let things = {}
 things.thing = [
     {x: 'this', y: 'that'},

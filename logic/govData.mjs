@@ -138,32 +138,39 @@ export async function getHistory(townName, flatType) {
     let resourceID = "a5ddfc4d-0e43-4bfe-8f51-e504e1365e27";
 
     //generating alternate names cause of inconsistent data
-    townName = townName.toUpperCase();
-    flatType = flatType.toUpperCase();
-    let _townName = capFirstLetter(townName);
-    let _flatType = flatType.toLowerCase();
-
     let filters = {
-        town: townName,
-        flat_type: flatType
+        town: townName.toUpperCase(),
+        flat_type: flatType.toUpperCase()
     }
     let _filters = {
-        town: _townName,
-        flat_type: _flatType
+        town: capFirstLetter(townName),
+        flat_type: flatType.toLowerCase()
+    }
+    let __filters ={ //for the 'Executive' naming convention
+        town: capFirstLetter(townName),
+        flat_type: capFirstLetter(flatType)
     }
 
     //fetch once for each name type
     let data1 = await getMain(resourceID, {}, filters, true);
     let data2 = await getMain(resourceID, {}, _filters, true);
+    let data3 = await getMain(resourceID, {}, __filters, true);
 
     //returned object contains the search params inside
     let result = {}
     Object.assign(result, filters);
 
-    //assign
+    //assign if there is any data in records, else continue
     result['data'] = [];
-    Object.assign(result['data'], data1['records']);
-    Object.assign(result['data'], data2['records']);
+    try {
+        Object.assign(result['data'], data1['records']);
+    } catch {}
+    try {
+        Object.assign(result['data'], data2['records']);
+    } catch {}
+    try {
+        Object.assign(result['data'], data3['records']);
+    } catch {}
 
     //delete non-relavant attributes
     for (let i=0; i<result['data'].length; i++) {
