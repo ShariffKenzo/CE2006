@@ -128,10 +128,11 @@ export async function getFloors(townName, streetName, block) {
 
 /**
  * This function exclusively queries the median-resale-prices dataset
- * Input the town name and flat type and it returns an object containing
+ * Input the town name and flat type
  * the median prices for all quarters
  * @param {string} townName String, name of the town to query
  * @param {string} flatType String, type of flat to query
+ * @returns Object, contains median prices for every quarter
  */
 export async function getHistory(townName, flatType) {
     let resourceID = "a5ddfc4d-0e43-4bfe-8f51-e504e1365e27";
@@ -142,11 +143,11 @@ export async function getHistory(townName, flatType) {
     let _townName = capFirstLetter(townName);
     let _flatType = flatType.toLowerCase();
 
-    filters = {
+    let filters = {
         town: townName,
         flat_type: flatType
     }
-    _filters = {
+    let _filters = {
         town: _townName,
         flat_type: _flatType
     }
@@ -158,11 +159,30 @@ export async function getHistory(townName, flatType) {
     //returned object contains the search params inside
     let result = {}
     Object.assign(result, filters);
-    for(let i=0; i<data1['total']; i++) {
 
+    //assign
+    result['data'] = [];
+    Object.assign(result['data'], data1['records']);
+    Object.assign(result['data'], data2['records']);
+
+    //delete non-relavant attributes
+    for (let i=0; i<result['data'].length; i++) {
+        delete result.data[i]['town'];
+        delete result.data[i]['flat_type'];
+        delete result.data[i]['_id'];
     }
-
-    data1['total']
+    //sort based on ascending date
+    result['data'].sort((a,b) => {
+        if (a.quarter < b.quarter) return -1;
+        if (a.quarter > b.quarter) return 1;
+        return 0;
+    });
+    //remove duplicate objects (for some reason duplicates exist)
+    result.data = result.data.filter((item, index, self) => 
+        index === self.findIndex((t) => 
+            (t.quarter === item.quarter && t.price === item.price)
+        )
+    )
 
     return result;
 }
