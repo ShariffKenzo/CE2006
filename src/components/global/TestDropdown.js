@@ -1,7 +1,7 @@
 import React from 'react'
 import { UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 
-const Testdropdown = () => {
+const TestDropdown = () => {
     return (
         <UncontrolledDropdown>
         <DropdownToggle caret>
@@ -18,4 +18,4 @@ const Testdropdown = () => {
     )
 }
 
-export default Testdropdown
+export default TestDropdown

@@ -1,6 +1,10 @@
 import React from 'react'
 import { UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
-
+/**
+ * Displays the list of streets from backend, accepts input from user and passes it to backend
+ * @param {*} props 
+ * @returns street dropdown component
+ */
 const StreetDropdown = (props) => {
   
 

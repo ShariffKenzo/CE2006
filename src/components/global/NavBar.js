@@ -2,7 +2,7 @@ import React from 'react'
 import { Navbar } from 'reactstrap'
 import { Link } from "react-router-dom"
 
-const NAVBar = () => {
+const NavBar = () => {
     return (
     <ul className ="header">
 
@@ -21,4 +21,4 @@ const NAVBar = () => {
     );
 }
 
-export default NAVBar
+export default NavBar

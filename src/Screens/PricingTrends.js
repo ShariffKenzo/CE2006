@@ -1,18 +1,17 @@
 import React from 'react'
 import "../App.css";
-import Header from "../components/Header";
-import Button from "../components/Button";
-import Backgroundimg from "../components/Backgroundimg";
-import SimpleMap from "../components/googlemap";
+import Header from "../components/global/Header";
+import Backgroundimg from "../components/global/BackgroundImage";
+import SimpleMap from "../components/price-estimator/PriceEstimatorMap";
 import { ReactDOM } from "react";
 
-import Example from "../components/Example";
-import TownDropdown from "../components/TownDropdown";
+import Example from "../components/global/Example";
+import TownDropdown from "../components/price-estimator/TownDropdown";
 import { Dropdown } from "reactstrap";
-import StreetDropdown from "../components/StreetDropdown";
-import FlatTypeDropdown from "../components/FlatTypeDropdown";
-import Testdropdown from "../components/Testdropdown";
-import Table from "../components/Table";
+import StreetDropdown from "../components/price-estimator/StreetDropdown";
+import FlatTypeDropdown from "../components/price-estimator/FlatTypeDropdown";
+import Testdropdown from "../components/global/TestDropdown";
+import Table from "../components/price-estimator/BlockInfo";
 
 const PricingTrends = () => {
     return (

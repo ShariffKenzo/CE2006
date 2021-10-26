@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
 
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
-
-class SimpleMap extends Component {
+/**
+ * Renders the Google maps component
+ */
+class PriceEstimatorMap extends Component {
   static defaultProps = {
     center: {
       lat: 1.3483,
@@ -35,4 +37,4 @@ class SimpleMap extends Component {
   }
 }
 
-export default SimpleMap;
+export default PriceEstimatorMap;

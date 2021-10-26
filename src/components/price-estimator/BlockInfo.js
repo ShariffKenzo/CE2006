@@ -1,9 +1,12 @@
 import React from "react";
 import { useState } from "react";
-import "../App.css";
+import "../../App.css";
 import data from "./Mock-data.json";
-
-const Table = () => {
+/**
+ * Displays the past prices from backend
+ * @returns block info component
+ */
+const BlockInfo = () => {
   const [HDB, setHDB] = useState(data);
 
   return (
@@ -46,4 +49,4 @@ const Table = () => {
   );
 };
 
-export default Table;
+export default BlockInfo;

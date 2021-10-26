@@ -1,6 +1,9 @@
 import React from 'react'
 import { UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
-
+/**
+ * Allows the user to choose a flat from the different types available
+ * @returns flat type dropdown component
+ */
 const FlatTypeDropdown = () => {
 
 
