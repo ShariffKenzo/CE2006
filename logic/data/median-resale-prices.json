@@ -1,0 +1,39 @@
+{
+    "town": [
+        "ANG MO KIO",
+        "BEDOK",
+        "BISHAN",
+        "BUKIT BATOK",
+        "BUKIT MERAH",
+        "BUKIT PANJANG",
+        "BUKIT TIMAH",
+        "CENTRAL",
+        "CENTRAL AREA",
+        "CHOA CHU KANG",
+        "CLEMENTI",
+        "GEYLANG",
+        "HOUGANG",
+        "JURONG EAST",
+        "JURONG WEST",
+        "KALLANG/WHAMPOA",
+        "MARINE PARADE",
+        "PASIR RIS",
+        "PUNGGOL",
+        "QUEENSTOWN",
+        "SEMBAWANG",
+        "SENGKANG",
+        "SERANGOON",
+        "TAMPINES",
+        "TOA PAYOH",
+        "WOODLANDS",
+        "YISHUN"
+    ],
+    "flat_type": [
+        "1-ROOM",
+        "2-ROOM",
+        "4-ROOM",
+        "5-ROOM",
+        "EXEC",
+        "Executive"
+    ]
+}

@@ -1,0 +1,18 @@
+{
+    "resource": {
+        "0": "resale-flat-prices",
+        "1": "median-resale-prices",
+        "2": "price-range-of-hdb-flats-offered"
+    },
+    "resource_name": {
+        "resale-flat-prices": {
+            "resource_id":"f1765b54-a209-4718-8d38-a39237f502b3"
+        },
+        "median-resale-prices": {
+            "resource_id":"a5ddfc4d-0e43-4bfe-8f51-e504e1365e27"
+        },
+        "price-range-of-hdb-flats-offered": {
+            "resource_id":"d23b9636-5812-4b33-951e-b209de710dd5"
+        }
+    }
+}
