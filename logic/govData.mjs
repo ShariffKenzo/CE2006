@@ -6,7 +6,6 @@
  * @author cruzerngz
  */
 
-
 import fetch from 'node-fetch'; //use import for .mjs files
 const url = "https://data.gov.sg/api/action/datastore_search?"; //data.gov url
 
@@ -42,7 +41,7 @@ export async function getMain(resourceID, qParams={}, filters={}, getAll=false) 
     }
     
     // uncomment the line below to print the request URL to console
-    //console.log(url + new URLSearchParams(params));
+    console.log(url + new URLSearchParams(params));
     var data = await get(url + new URLSearchParams(params));
 
     return (data['result']);
@@ -128,81 +127,64 @@ export async function getFloors(townName, streetName, block) {
 
 /**
  * This function exclusively queries the median-resale-prices dataset
- * Input the town name and flat type
- * the median prices for all quarters
  * @param {string} townName String, name of the town to query
  * @param {string} flatType String, type of flat to query
  * @returns Object, contains median prices for every quarter
  */
 export async function getHistory(townName, flatType) {
     let resourceID = "a5ddfc4d-0e43-4bfe-8f51-e504e1365e27";
-
-    //generating alternate names cause of inconsistent data
-    let filters = {
-        town: townName.toUpperCase(),
-        flat_type: flatType.toUpperCase()
-    }
-    let _filters = {
-        town: capFirstLetter(townName),
-        flat_type: flatType.toLowerCase()
-    }
-    let __filters ={ //for the 'Executive' naming convention
-        town: capFirstLetter(townName),
-        flat_type: capFirstLetter(flatType)
+    //using full text query instead of filters
+    //because I can use just 1 API call instead of 3 (check prev)
+    let params = {
+        q: JSON.stringify({
+            town: townName,
+            flat_type: flatType
+        }),
+        sort: 'quarter asc', //sorting done server side
+        fields: 'quarter, price' //required fields
     }
 
-    //fetch once for each name type
-    let data1 = await getMain(resourceID, {}, filters, true);
-    let data2 = await getMain(resourceID, {}, _filters, true);
-    let data3 = await getMain(resourceID, {}, __filters, true);
-
-    //returned object contains the search params inside
-    let result = {}
-    Object.assign(result, filters);
-
-    //assign if there is any data in records, else continue
-    result['data'] = [];
-    try {
-        Object.assign(result['data'], data1['records']);
-    } catch {}
-    try {
-        Object.assign(result['data'], data2['records']);
-    } catch {}
-    try {
-        Object.assign(result['data'], data3['records']);
-    } catch {}
-
-    //delete non-relavant attributes
-    for (let i=0; i<result['data'].length; i++) {
-        delete result.data[i]['town'];
-        delete result.data[i]['flat_type'];
-        delete result.data[i]['_id'];
+    //fetch
+    let data = await getMain(resourceID, params, {}, true);
+    
+    //when using q instead of filter, 3 extra fields pop up
+    //'_full_count' always appears
+    //2 more correspond to the 2 queried fields, with 'rank ' appended 
+    for (let i=0; i<data['total']; i++) {
+        delete data['records'][i]['_full_count'];
+        delete data['records'][i]['rank town']
+        delete data['records'][i]['rank flat_type']
     }
-    //sort based on ascending date
-    result['data'].sort((a,b) => {
-        if (a.quarter < b.quarter) return -1;
-        if (a.quarter > b.quarter) return 1;
-        return 0;
-    });
-    //remove duplicate objects (for some reason duplicates exist)
-    result.data = result.data.filter((item, index, self) => 
+
+    //remove duplicate objects (for some reason duplicates exist ???)
+    data['records'] = data['records'].filter((item, index, self) => 
         index === self.findIndex((t) => 
             (t.quarter === item.quarter && t.price === item.price)
         )
     )
 
+    //generate the returning object
+    let result = {}
+
+    Object.assign(result, {
+        town: capFirstLetter(townName),
+        flat_type: capFirstLetter(flatType),
+        total: data['records'].length,
+        data: data['records']
+    });
     return result;
 }
 
 /**
+ * Helper function **(NOT IN USE CURRENTLY)**  
  * Takes any string and capitalises the first letter separated
  * by any non alphanumeric character  
  * Separator throughout the string needs to be the same,
- * Else the first separator type is used.  
+ * else the first separator type is used.  
  * @param {string} string String to perform operation on
  * @returns String with first letter of each distinct word capitalised
  */
-export function capFirstLetter(string) {
+function capFirstLetter(string) {
     let regex = /[^A-Za-z0-9]/;
     let arr = string.split(regex);
     let sep = string.charAt(arr[0].length); //get the separator
@@ -214,7 +196,3 @@ export function capFirstLetter(string) {
     }
     return arr.join(sep);
 }
-
-// console.log(capFirstLetter('KALLANG/WHAOMPA'));
-// console.log(capFirstLetter('ang mo kio'))
-// console.log(capFirstLetter('ANG MO KIO'))

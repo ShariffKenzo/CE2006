@@ -1,6 +1,5 @@
 import * as govData from './govData.mjs';
 import * as fs from 'fs';
-import { getHistory } from './govData.mjs';
 
 function readJSON(filePath) {
     let raw = fs.readFileSync(filePath);
@@ -20,23 +19,31 @@ let resourceID1 = db.resource_name[db.resource[1]].resource_id;
 // console.log(db);
 
 let params = {
-    limit: 5
+    limit: 2,
+    fields: 'quarter, price',
+    q: JSON.stringify({
+        town: 'Bedok',
+        flat_type: '5-room'
+    }),
+    //sort: ['quarter asc']
 }
 let filters = {
-    town: 'Bedok',
+    town: 'BEDOK',
     flat_type: '5-room'
 }
-//let data = govData.getMain(resourceID, params, filters);
+//let data = await govData.getMain(resourceID1, params);
 //let data = await govData.getStreets('CENTRAL AREA')
-let data = await govData.getHistory('Choa Chu Kang','executive');
+let data = await govData.getHistory('Choa Chu Kang','5-room');
 // let query = {q: 'executive'};
 // let data = await govData.getMain(resourceID0, query);
+
 let things = {}
 things.thing = [
     {x: 'this', y: 'that'},
     {x: 'wow', y:'wew'},
     {x: 'this', y: 'that'}
 ]
-console.log(data);
 
+console.log(data);
+ 
 
