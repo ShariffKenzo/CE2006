@@ -11,18 +11,26 @@ export class Coordinates {
      * @param lon String/Number, in DD or DMS
      */
     constructor(lat, lon) {
-        if (typeof lat == 'number' && typeof lon == 'number') {
-            //console.log('number');
+        this.nLat = 0;
+        this.nLon = 0;
+        this.sLat = '0N';
+        this.sLon = '0E';
+
+        if (typeof lat == 'number') {
             this.nLat = this.DD_DD(lat);
-            this.nLon = this.DD_DD(lon);
             this.sLat = this.DD_DMS(lat, 'N');
+        }
+        else if (typeof lat == 'string') {
+            this.nLat = this.DMS_DD(lat);
+            this.sLat = this.DMS_DMS(lat, 'N');
+        }
+        
+        if (typeof lon == 'number') {
+            this.nLon = this.DD_DD(lon);
             this.sLon = this.DD_DMS(lon, 'E');
         }
-        else if (typeof lat == 'string' && typeof lon == 'string') {
-            //console.log('string');
-            this.nLat = this.DMS_DD(lat);
+        else if (typeof lon == 'string') {
             this.nLon = this.DMS_DD(lon);
-            this.sLat = this.DMS_DMS(lat, 'N');
             this.sLon = this.DMS_DMS(lon, 'E');
         }
     }
@@ -60,16 +68,14 @@ export class Coordinates {
     DMS_DD(stringIn) { //convert to decimal degrees
         let regex = /[^0-9.-]/;
         let DMSArray = stringIn.split(regex).filter(x => x);
-        var n;
+        var n = Math.abs(Number(DMSArray[0])) + Number(DMSArray[1])/60 + Number(DMSArray[2])/3600;
 
         if (Math.sign(Number(DMSArray[0])) == 1) {
-            n = Number(DMSArray[0]) + Number(DMSArray[1])/60 + Number(DMSArray[2])/3600;
+            return Number(n.toFixed(6));
         }
         else {
-            n = Number(DMSArray[0]) - Number(DMSArray[1])/60 - Number(DMSArray[2])/3600;
+            return 0 - Number(n.toFixed(6));
         }
-
-        return Number(n.toFixed(6));
     }
 
     /**
