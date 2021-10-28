@@ -1,5 +1,5 @@
 /**
- * For exchanging global coordinates
+ * For exchanging global coordinates  
  * Holds coordinate information in both DD or DMS
  * @author cruzerngz
  */
@@ -26,18 +26,26 @@ export class Coordinates {
             this.sLon = lon;
         }
     }
+
     /**
      * Converts a string coordinate into a decimal number
      * Coordinates to 6 decimal places
      * @param {String} stringIn Format: DDD°MM'SS.SS"N  
-     * Other accepted formats: string with 3 distinct numbers:
+     * Other formats: string containing 3 distinct numbers:
      * **degrees, minutes, seconds**
      */
     DMS_DD(stringIn) { //convert to decimal degrees
-        let regex = /[^0-9.]/;
+        let regex = /[^0-9.-]/;
         let DMSArray = stringIn.split(regex);
+        var n;
 
-        let n = Number(DMSArray[0]) + Number(DMSArray[1])/60 + Number(DMSArray[2])/3600;
+        if (Math.sign(Number(DMSArray[0])) == 1) {
+            n = Number(DMSArray[0]) + Number(DMSArray[1])/60 + Number(DMSArray[2])/3600;
+        }
+        else if (Math.sign(Number(DMSArray[0])) == -1) {
+            n = Number(DMSArray[0]) - Number(DMSArray[1])/60 - Number(DMSArray[2])/3600;
+        }
+        
 
         return Number(n.toFixed(6));
     }
@@ -48,6 +56,8 @@ export class Coordinates {
      * @param {String} lat_long 'N' or 'E'
      */
     DD_DMS(numberIn, lat_long) { //convert to degrees, minutes and seconds
+        let sign = Math.sign(numberIn); //get the sign
+        numberIn = Math.abs(numberIn);
         let deg = Math.floor(numberIn)
         .toString()
 
@@ -58,6 +68,12 @@ export class Coordinates {
         .toFixed(2).padStart(4,0);
 
         //console.log(`${deg}°${min}'${sec}"${lat_long}`);
-        return `${deg}°${min}'${sec}"${lat_long}`;
+        if (sign == 1) {
+            return `${deg}°${min}'${sec}"${lat_long}`;
+        }
+        else {
+            return `-${deg}°${min}'${sec}"${lat_long}`;
+        }
+
     }
 }

@@ -36,7 +36,7 @@ let filters = {
 //let data = await govData.getMain(resourceID0, params);
 //let data = await govData.getStreets('choa chu kang');
 //let data = await govData.getBlocks('choa chu kang', 'choa chu kang dr');
-let data = await govData.getHistory('Choa Chu Kang','5-room');
+//let data = await govData.getHistory('Choa Chu Kang','5-room');
 // let query = {q: 'executive'};
 // let data = await govData.getMain(resourceID0, query);
 
@@ -47,8 +47,8 @@ things.thing = [
     {x: 'this', y: 'that'}
 ]
 
-console.log(data);
+//console.log(data);
 import * as gCoor from './gCoordinates.js';
 
-console.log(new gCoor.gCoordinates(1.41421, 3.316624));
-
+console.log(new gCoor.Coordinates(`-2°35'8.84"N`,`3°18'59.85"E`));
+console.log(new gCoor.Coordinates(-1.4142, -2.23606))
