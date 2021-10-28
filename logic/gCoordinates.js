@@ -43,7 +43,10 @@ export class Coordinates {
     DMS_DMS(stringIn, lat_long) {
         let regex = /[^0-9.-]/;
         let DMSArray = stringIn.split(regex).filter(x => x);
-        return `${DMSArray[0]}°${DMSArray[1]}'${DMSArray[2]}"${lat_long}`;
+        let deg = DMSArray[0];
+        let min = DMSArray[1].padStart(2,0);
+        let sec = Number(DMSArray[2]).toFixed(2).padStart(4,0);
+        return `${deg}°${min}'${sec}"${lat_long}`;
     }
 
     /**
