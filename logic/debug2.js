@@ -48,7 +48,7 @@ things.thing = [
 ]
 
 //console.log(data);
-import * as gCoor from './gCoordinates.js';
+import {Coordinates} from './gCoordinates.js';
 
-console.log(new gCoor.Coordinates(`-2°35'8.84"N`,`3°18'59.85"E`));
-console.log(new gCoor.Coordinates(-1.4142, -2.23606))
+console.log(new Coordinates(`-2     123   asdfsadg 1.456`,`3°18'59.85"E`));
+console.log(new Coordinates(1.1142, -2.23606))
