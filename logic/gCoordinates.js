@@ -3,7 +3,7 @@
  * Holds coordinate information in both DD or DMS
  * @author cruzerngz
  */
-class gCoordinates {
+export class Coordinates {
     /**Takes in coordinates in either DMS or DD format
      * @see https://en.wikipedia.org/wiki/Decimal_degrees  
      * @see https://en.wikipedia.org/wiki/Degree_(angle)#Subdivisions
