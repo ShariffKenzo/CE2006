@@ -11,14 +11,22 @@ const url = "https://data.gov.sg/api/action/datastore_search?"; //data.gov url
 
 /**
  * Main function used to fetch from data.gov  
- * Fetches up to the first 100 entries
+ * Fetches up to the first 100 entries  
+ * For more information see @see https://data.gov.sg/dataset/ckan-datastore-search  
  * @param {string} resourceID String, ID of the database in govData
- * @param {Object} qParams Object, additional parameters
+ * @param {Object} qParams Object, additional parameters  
+ * Accepted parameters:  
+ * - limit: max rows  
+ * - offset: number of rows to skip   
+ * - fields: fields to return  
+ * - q: full text query  
+ * - sort: append 'asc' or 'desc' to field name  
  * @param {Object} filters Object, key-value pairs of matching conditions  
  * (E.g. [col_name] : [matching_condition])  
+ * Note: search string must match **exactly**  
  * @param {Boolean} getAll Boolean (optional), used if retrieving ALL matching cases  
  * If a query requires more than 100 results, set getAll to true  
- * Warning: resulting object can get quite large
+ * **Warning**: resulting object can get quite large
  * @returns Object, containing query results
  */
 export async function getMain(resourceID, qParams={}, filters={}, getAll=false) {
@@ -63,10 +71,10 @@ export async function getMain(resourceID, qParams={}, filters={}, getAll=false) 
  * Get the list of town names from the reference file town-lists.json (MAKE THE FILE)  
  * @param {string} townName String, name of town to query
  * @returns List of streets for that town
- */  
+ */
 export async function getStreets(townName) {
     let resourceID = "f1765b54-a209-4718-8d38-a39237f502b3";
-    let filters = {town : townName};
+    let filters = {town : townName.toUpperCase()};
 
     let data = await getMain(resourceID, {}, filters, true) //get all
 
@@ -88,8 +96,8 @@ export async function getStreets(townName) {
 export async function getBlocks(townName, streetName) {
     let resourceID = "f1765b54-a209-4718-8d38-a39237f502b3";
     let filters = {
-        town : townName,
-        street_name : streetName
+        town : townName.toUpperCase(),
+        street_name : streetName.toUpperCase()
     };
     let data = await getMain(resourceID, {}, filters, true) //get all
 
@@ -111,8 +119,8 @@ export async function getBlocks(townName, streetName) {
 export async function getFloors(townName, streetName, block) {
     let resourceID = "f1765b54-a209-4718-8d38-a39237f502b3";
     let filters = {
-        town: townName,
-        street_name: streetName,
+        town: townName.toUpperCase(),
+        street_name: streetName.toUpperCase(),
         block: block
     }
     let data = await getMain(resourceID, {}, filters, true);
@@ -164,7 +172,7 @@ export async function getHistory(townName, flatType) {
     )
 
     //generate the returning object
-    let result = {}
+    let result = {};
 
     Object.assign(result, {
         town: capFirstLetter(townName),

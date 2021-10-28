@@ -1,4 +1,4 @@
-import * as govData from './govData.mjs';
+import * as govData from './govData.js';
 import * as fs from 'fs';
 
 function readJSON(filePath) {
@@ -12,18 +12,20 @@ function readJSON(filePath) {
 const db = readJSON('./CE2006/logic/data/databases.json');
 // console.log(process.cwd());
 
-let resourceID0 = db.resource_name[db.resource[0]].resource_id;
-let resourceID1 = db.resource_name[db.resource[1]].resource_id;
+let resourceID0 = db.resource[0].id;
+let resourceID1 = db.resource[1].id;
 
 // console.log(resourceID);
 // console.log(db);
 
 let params = {
-    limit: 2,
-    fields: 'quarter, price',
+    //limit: 10,
+    //fields: 'quarter, price',
     q: JSON.stringify({
-        town: 'Bedok',
-        flat_type: '5-room'
+        town: 'choa chu kang',
+        flat_type: '5-room',
+        street_name: 'choa chu kang loop',
+        //block: '341'
     }),
     //sort: ['quarter asc']
 }
@@ -31,8 +33,9 @@ let filters = {
     town: 'BEDOK',
     flat_type: '5-room'
 }
-//let data = await govData.getMain(resourceID1, params);
-//let data = await govData.getStreets('CENTRAL AREA')
+//let data = await govData.getMain(resourceID0, params);
+//let data = await govData.getStreets('choa chu kang');
+//let data = await govData.getBlocks('choa chu kang', 'choa chu kang dr');
 let data = await govData.getHistory('Choa Chu Kang','5-room');
 // let query = {q: 'executive'};
 // let data = await govData.getMain(resourceID0, query);
