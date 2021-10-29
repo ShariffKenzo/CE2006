@@ -139,7 +139,7 @@ export async function getFloors(townName, streetName, block) {
  * @param {string} flatType String, type of flat to query
  * @returns Object, contains median prices for every quarter
  */
-export async function getMedianHistory(townName, flatType) {
+export async function getHistory(townName, flatType) {
     let resourceID = "a5ddfc4d-0e43-4bfe-8f51-e504e1365e27";
     //using full text query instead of filters
     //because I can use just 1 API call instead of 3 (check prev)
@@ -184,7 +184,7 @@ export async function getMedianHistory(townName, flatType) {
 }
 
 /**
- * Helper function
+ * Helper function **(NOT IN USE CURRENTLY)**  
  * Takes any string and capitalises the first letter separated
  * by any non alphanumeric character  
  * Separator throughout the string needs to be the same,
@@ -204,58 +204,3 @@ function capFirstLetter(string) {
     }
     return arr.join(sep);
 }
-
-/**
- * Wrapper function for getMain
- * Simplify fetching price histories
- * Queries the resale-flat-prices dataset
- * @param {String} town Town name
- * @param {Stringt} street Street name
- * @param {Number} block Block number
- * @param {String} sortBy Column to sort values by, ascending
- */
-export async function getResaleHistory(town, street='', block='', sortBy='month') {
-    let resourceID = "f1765b54-a209-4718-8d38-a39237f502b3";
-
-    let query = {};
-    if(town) Object.assign(query, {town: town});
-    if(street) Object.assign(query,{street_name: street});
-    if(block) Object.assign(query, {block: block});
-
-    let params = {
-        sort: `${sortBy} asc`,
-        //fields:'' //unsure
-        q: JSON.stringify(query)
-    };
-
-    let data = await getMain(resourceID, params, {});
-
-    return data;
-}
-
-/**
- * Returns list containing details of nearby HDBs
- * Minimum nummber of HDBs to return are yet to be determined
- * @param {String} town Town name
- * @param {String} street Street name, optional
- * @param {Number} block Block number, optional
- * @param {String} sortBy Column to sort values by, ascending
- */
-export async function getSurroundingHDB(town, street='', block='', sortBy) {
-    let resourceID = "f1765b54-a209-4718-8d38-a39237f502b3";
-
-    let query = {};
-    if(town) Object.assign(query, {town: town});
-    if(street) Object.assign(query,{street_name: street});
-    if(block) Object.assign(query, {block: block});
-
-    let params = {
-        sort: `${sortBy} asc`,
-        q: JSON.stringify({query})
-    }
-
-    let data = await getMain(resourceID, params, {}, true);
-
-}
-
-console.log(await getResaleHistory('choa chu kang','choa chu kang ave 1'));
