@@ -17,29 +17,58 @@ export class Coordinates {
         this.sLon = '0E';
 
         if (typeof lat == 'number') {
-            this.nLat = this.DD_DD(lat);
-            this.sLat = this.DD_DMS(lat, 'N');
+            this.nLat = this.#DD_DD(lat);
+            this.sLat = this.#DD_DMS(lat, 'N');
         }
         else if (typeof lat == 'string') {
-            this.nLat = this.DMS_DD(lat);
-            this.sLat = this.DMS_DMS(lat, 'N');
+            this.nLat = this.#DMS_DD(lat);
+            this.sLat = this.#DMS_DMS(lat, 'N');
         }
         
         if (typeof lon == 'number') {
-            this.nLon = this.DD_DD(lon);
-            this.sLon = this.DD_DMS(lon, 'E');
+            this.nLon = this.#DD_DD(lon);
+            this.sLon = this.#DD_DMS(lon, 'E');
         }
         else if (typeof lon == 'string') {
-            this.nLon = this.DMS_DD(lon);
-            this.sLon = this.DMS_DMS(lon, 'E');
+            this.nLon = this.#DMS_DD(lon);
+            this.sLon = this.#DMS_DMS(lon, 'E');
         }
+    }
+
+    /**
+     * Calculate the distance between itself and another set of coordinates  
+     * Calculates a great circle distance (line sitting on sphere)  
+     * Uses the *haversine* formula
+     * @see https://www.movable-type.co.uk/scripts/latlong.html
+     * @param {Coordinates} coord Coordinates object
+     * @returns Number, distance in metres, up to 2 D.P.
+     */
+    distanceFrom(coord) {
+        //earth equatorial radius in metres
+        //using this instead of mean radius
+        //since singapore basically sits on the eqtr
+        const radius = 6378000; 
+
+        // s: latitude, p: longitude
+        const s1 = this.nLat * Math.PI/180;
+        const s2 = coord.nLat * Math.PI/180;
+        const deltaS = (coord.nLat - this.nLat) * Math.PI/180;
+        const deltaP = (coord.nLon - this.nLon) * Math.PI/180;
+
+        const q =   Math.sin(deltaS/2) ** 2 +
+                    Math.cos(s1) * Math.cos(s2) *
+                    Math.sin(deltaP/2) ** 2;
+
+        const arc = 2 * Math.atan2(Math.sqrt(q), Math.sqrt(1-q));
+
+        return Number((radius * arc).toFixed(2));
     }
 
     /**
      * Parses DD coordinates into the correct format
      * @param {Number} numberIn 
      */
-    DD_DD(numberIn) {
+    #DD_DD(numberIn) {
         return Number(numberIn.toFixed(6));
     }
 
@@ -48,7 +77,7 @@ export class Coordinates {
      * @param {String} stringIn 
      * @param {String} lat_long 
      */
-    DMS_DMS(stringIn, lat_long) {
+    #DMS_DMS(stringIn, lat_long) {
         let regex = /[^0-9.-]/;
         let DMSArray = stringIn.split(regex).filter(x => x);
         let deg = DMSArray[0];
@@ -65,7 +94,7 @@ export class Coordinates {
      * **degrees, minutes, seconds**
      * @returns Number formatted to 6 DP
      */
-    DMS_DD(stringIn) { //convert to decimal degrees
+    #DMS_DD(stringIn) { //convert to decimal degrees
         let regex = /[^0-9.-]/;
         let DMSArray = stringIn.split(regex).filter(x => x);
         var n = Math.abs(Number(DMSArray[0])) + Number(DMSArray[1])/60 + Number(DMSArray[2])/3600;
@@ -84,7 +113,7 @@ export class Coordinates {
      * @param {String} lat_long 'N' or 'E'
      * @returns String formatted DMS coordinates
      */
-    DD_DMS(numberIn, lat_long) { //convert to degrees, minutes and seconds
+    #DD_DMS(numberIn, lat_long) { //convert to degrees, minutes and seconds
         let sign = Math.sign(numberIn); //get the sign
         numberIn = Math.abs(numberIn); //remove the sign
 
