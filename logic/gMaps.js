@@ -7,7 +7,8 @@ import { Coordinates } from './Coordinates.js';
 
 const APIKEY ='AIzaSyC0TKO_0cGq2LsVVBg3cUYwMJ-URAD7w7s' //free trial api key
 const geocodeURL = 'https://maps.googleapis.com/maps/api/geocode/json?';
-const placeURL = 'https://maps.googleapis.com/maps/api/place/details/json?'
+const placeURL = 'https://maps.googleapis.com/maps/api/place/details/json?';
+const nearbyURL = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?';
 
 /**
  * Looks up address based on given string
@@ -26,7 +27,10 @@ export async function geoCode(address) {
   let resp = await fetch(geocodeURL + new URLSearchParams(params));
   let json = await resp.json();
 
-  return json['results'];
+  if (json['status'] == 'OK') {
+    return json['results'];
+  } 
+  else return null;
 }
 
 /**
@@ -43,6 +47,21 @@ export async function revgeoCode(coords) {
   let resp = await fetch(geocodeURL + new URLSearchParams(params));
   let json = await resp.json();
 
-  return json['results'];
+  if (json['status'] == 'OK') {
+    return json['results'];
+  } 
+  else return null;
+  
 }
 
+
+// export async function searchNearby(coords) {
+
+// }
+
+// export async function getPlace(placeID) {
+//   params = {
+//     place_id : placeID,
+
+//   }
+// }
