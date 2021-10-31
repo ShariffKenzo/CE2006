@@ -11,7 +11,7 @@
 */
 import axios from 'axios';
 
-var APIKEY ='ENTER UR API KEY'
+var APIKEY ='AIzaSyDlDU6iAPyerdYHVMeSl6Uc1j47ExEYkZs'
 latLng("123_Petir_Street_Singapore")
 
 function latLng(address){
