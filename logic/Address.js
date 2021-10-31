@@ -20,24 +20,31 @@ export class Address {
         this.loc = coords
         this.type = '';
         this.placeid = '';
-        this.build();
     }
+
+    /**
+     * Call this right after initialising a new instance of Address:  
+     * ```await this.build();```
+     */
     async build() {
         var data;
 
         //build based off coordinates
-        if(this.coords != null) {
-            data = await gMaps.revgeoCode(this.coords);
+        if(this.loc != null) {
+            data = await gMaps.revgeoCode(this.loc);
+            this.town = data[0]['address_components'][2]['short_name'].toUpperCase();
+            this.streetName = data[0]['address_components'][1]['short_name'].toUpperCase();
+            this.streetNo = Number(data[0]['address_components'][0]['short_name']);
         }
         //build based off address
         else if(this.streetName && this.streetNo) {
             data = await gMaps.geoCode(`${this.streetNo} ${this.streetName}`);
+            this.town = data[0]['address_components'][3]['short_name'].toUpperCase();
+            this.streetName = data[0]['address_components'][2]['short_name'].toUpperCase();
+            this.streetNo = Number(data[0]['address_components'][1]['short_name']);
         }
 
-        this.town = data[0]['address_components'][3]['short_name'].toUpperCase();
-        this.streetName = data[0]['address_components'][2]['short_name'].toUpperCase();
-        this.streetNo = Number(data[0]['address_components'][1]['short_name']);
-        this.coords = new Coordinates(
+        this.loc = new Coordinates(
             data[0]['geometry']['location']['lat'],
             data[0]['geometry']['location']['lng']
         );
