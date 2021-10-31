@@ -44,7 +44,6 @@ export async function getMain(resourceID, qParams={}, filters={}, getAll=false) 
         params['limit'] = 1;
         let temp = await get(url + new URLSearchParams(params));
         let total = temp['result']['total'];
-
         params['limit'] = total;
     }
     
@@ -93,10 +92,9 @@ export async function getStreets(townName) {
  * @param {string} streetName String, name of street to query
  * @returns List of blocks for that town :: street 
  */
-export async function getBlocks(townName, streetName) {
+export async function getBlocks(streetName) {
     let resourceID = "f1765b54-a209-4718-8d38-a39237f502b3";
     let filters = {
-        town : townName.toUpperCase(),
         street_name : streetName.toUpperCase()
     };
     let data = await getMain(resourceID, {}, filters, true) //get all
@@ -116,10 +114,9 @@ export async function getBlocks(townName, streetName) {
  * @param {string} block String, block number to query
  * @returns List of floors for town :: street :: block
  */
-export async function getFloors(townName, streetName, block) {
+export async function getFloors(streetName, block) {
     let resourceID = "f1765b54-a209-4718-8d38-a39237f502b3";
     let filters = {
-        town: townName.toUpperCase(),
         street_name: streetName.toUpperCase(),
         block: block
     }
@@ -206,6 +203,15 @@ function capFirstLetter(string) {
 }
 
 /**
+ * 
+ * @param {String} town 
+ */
+export async function getTownHistoryTrend(town) {
+
+}
+
+/**
+ * **UNUSED**  
  * Wrapper function for getMain
  * Simplify fetching price histories
  * Queries the resale-flat-prices dataset
@@ -257,5 +263,3 @@ export async function getSurroundingHDB(town, street='', block='', sortBy) {
     let data = await getMain(resourceID, params, {}, true);
 
 }
-
-console.log(await getResaleHistory('choa chu kang','choa chu kang ave 1'));
