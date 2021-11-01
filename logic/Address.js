@@ -48,6 +48,7 @@ export class Address {
             data[0]['geometry']['location']['lat'],
             data[0]['geometry']['location']['lng']
         );
+        this.type = data[0]['types'][0];
         this.placeid = data[0]['place_id'];
     }
 

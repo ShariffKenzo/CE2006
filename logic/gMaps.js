@@ -2,10 +2,13 @@
 *This file will take an address and return the longditude/lattitude of the particular place
 *
 */
+import * as fs from 'fs';
+
 import fetch from 'node-fetch';
 import { Coordinates } from './Coordinates.js';
 
-const APIKEY ='AIzaSyC0TKO_0cGq2LsVVBg3cUYwMJ-URAD7w7s' //free trial api key
+let filePath = './logic/data/gMaps.txt' //locally stored API key
+const APIKEY = fs.readFileSync(filePath,'utf-8');
 const geocodeURL = 'https://maps.googleapis.com/maps/api/geocode/json?';
 const placeURL = 'https://maps.googleapis.com/maps/api/place/details/json?';
 const nearbyURL = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?';
