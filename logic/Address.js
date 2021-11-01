@@ -6,14 +6,16 @@ import { Coordinates } from "./Coordinates.js";
  */
 export class Address {
     /**
+     * Geocode/reverse geocode address constructor  
      * Generate address object via 2 methods:  
-     * - pass in and streetname and street number
+     * - pass in and streetname **and** street number
      * - pass in coordinates
-     * @param {String} streetName Name of street
-     * @param {Number} streetNo Street or block number
+     * @param {String} streetName Name of street, optional
+     * @param {Number} streetNo Street or block number, optional
      * @param {Coordinates} coords Coordinates object, optional
      */
     constructor(streetName='', streetNo=0, coords = null) {
+        this.fullAdddress = '';
         this.town = '';
         this.streetName = streetName;
         this.streetNo = streetNo;
@@ -23,7 +25,7 @@ export class Address {
     }
 
     /**
-     * Call this right after initialising a new instance of Address:  
+     * Build the remaining address attributes:  
      * ```await this.build();```
      */
     async build() {
@@ -44,6 +46,7 @@ export class Address {
             this.streetNo = Number(data[0]['address_components'][1]['short_name']);
         }
 
+        this.fullAdddress = data[0]['formatted_address'];
         this.loc = new Coordinates(
             data[0]['geometry']['location']['lat'],
             data[0]['geometry']['location']['lng']

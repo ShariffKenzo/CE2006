@@ -8,5 +8,5 @@ await x.build();
 console.log(x);
 
 let y = new add.Address('choa chu kang ave 4',416);
-await y.build()
+await y.build(); 
 console.log(y);
