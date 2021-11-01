@@ -40,7 +40,7 @@ export async function geoCode(address) {
 /**
  * Looks up address based on given coordinates
  * @param {Coordinates} coords Coordinates object
- * @returns JSON, result
+ * @returns JSON array
  */
 export async function revgeoCode(coords) {
     let params = {
@@ -66,7 +66,7 @@ export async function revgeoCode(coords) {
  * @param {Number} radius Radius (meters) around coords to search, optional
  * @returns Array of place details
  */
-export async function nearbyPlaces(coords, type, radius = 500) {
+export async function nearbyPlaces(coords, type, radius=500) {
     let params = {
         key: APIKEY,
         location: `${(coords.nLat)}, ${(coords.nLon)}`,
