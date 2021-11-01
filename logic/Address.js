@@ -21,7 +21,7 @@ export class Address {
         this.streetNo = streetNo;
         this.loc = coords
         this.type = '';
-        this.placeid = '';
+        this.placeID = '';
     }
 
     /**
@@ -52,11 +52,6 @@ export class Address {
             data[0]['geometry']['location']['lng']
         );
         this.type = data[0]['types'][0];
-        this.placeid = data[0]['place_id'];
+        this.placeID = data[0]['place_id'];
     }
-
-
-
-
-
 }
