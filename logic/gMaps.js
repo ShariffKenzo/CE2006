@@ -13,6 +13,7 @@ const APIKEY = fs.readFileSync(filePath, 'utf-8');
 const geocodeURL = 'https://maps.googleapis.com/maps/api/geocode/json?';
 const nearbyURL = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?';
 const placeURL = 'https://maps.googleapis.com/maps/api/place/details/json?';
+const searchURL = 'https://maps.googleapis.com/maps/api/place/findplacefromtext/json?';
 
 /**
  * Looks up address based on given string
@@ -103,4 +104,29 @@ export async function placeDetails(place_id) {
 		return json['result'];
 	}
 	else return null;
+}
+
+/**
+ * General text search.  
+ * Location constrained to Singapore  
+ * Search starts from W to E  
+ * Overrides object with new search data
+ * @param {String} query Text search
+ * @returns JSON array
+ */
+export async function search(query) {
+	
+	let params = {
+		key: APIKEY,
+		input: query,
+		inputtype: 'textquery',
+		fields: 'place_id',
+		locationbias: 'circle:25000@1.35,103.81'
+	}
+
+	console.log(searchURL + new URLSearchParams(params));
+	let resp = await fetch(searchURL + new URLSearchParams(params));
+	let json = await resp.json();
+
+	return await placeDetails(json['candidates'][0]['place_id']);
 }

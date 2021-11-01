@@ -28,6 +28,18 @@ export class Place {
         this.placeID = placeID;
     }
 
+    reset() {
+        this.name = ''
+        this.fullAdddress = '';
+        this.town = '';
+        this.streetName = '';
+        this.streetNo = '';
+        this.postCode = 0;
+        this.loc = ''
+        this.type = '';
+        this.placeID = '';   
+    }
+
     /**
      * Build the remaining address attributes:  
      * ```await this.build();```
@@ -78,6 +90,49 @@ export class Place {
         this.postCode = data['address_components']
         .filter(component => component.types[0] == 'postal_code')
         [0]['short_name'];
+
+        this.fullAdddress = `${this.streetNo} ${this.streetName}, Singapore ${this.postCode}`;
+        this.loc = new Coordinates(
+            data['geometry']['location']['lat'],
+            data['geometry']['location']['lng']
+        );
+        this.type = data['types'][0];
+    }
+
+    /**
+     * Build based on best match  
+     * @param {String} query General text query
+     */
+    async find(query) {
+        this.reset();
+        let data = await gMaps.search(query);
+        
+        this.placeID = data['place_id'];
+        this.name = data['name'];
+
+        try{
+        this.town = data['address_components']
+        .filter(component => component.types[0] == 'neighborhood')
+        [0]['short_name'];
+        } catch{}
+
+        try{
+        this.streetName = data['address_components']
+        .filter(component => component.types[0] == 'route')
+        [0]['short_name'];
+        } catch{}
+
+        try{
+        this.streetNo = data['address_components']
+        .filter(component => component.types[0] == 'street_number')
+        [0]['short_name'];
+        } catch{}
+
+        try{
+        this.postCode = data['address_components']
+        .filter(component => component.types[0] == 'postal_code')
+        [0]['short_name'];
+        } catch{}
 
         this.fullAdddress = `${this.streetNo} ${this.streetName}, Singapore ${this.postCode}`;
         this.loc = new Coordinates(
