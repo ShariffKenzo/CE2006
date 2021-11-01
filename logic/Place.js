@@ -12,11 +12,11 @@ export class Place {
      * - pass in coordinates
      * - pass in placeID
      * @param {String} streetName Name of street, optional
-     * @param {Number} streetNo Street or block number, optional
+     * @param {String} streetNo Street or block number, string or number, optional
      * @param {Coordinates} coords Coordinates object, optional
      * @param {String} placeID Google's placeID, optional
      */
-    constructor(streetName='', streetNo=0, coords=null, placeID=null) {
+    constructor(streetName='', streetNo='', coords=null, placeID=null) {
         this.name = ''
         this.fullAdddress = '';
         this.town = '';
@@ -37,7 +37,7 @@ export class Place {
 
         //build based off coordinates
         //double query
-        if(this.loc != null) {
+        if(this.loc) {
             data = await gMaps.revgeoCode(this.loc);
             data = data[0];
 
@@ -57,10 +57,11 @@ export class Place {
         }
         //build based off placeID
         //single query
-        else if(this.placeID != null) {
+        else if(this.placeID) {
             data = await gMaps.placeDetails(this.placeID);
             this.name = data['name'];
         }
+
         //build the rest (common)
         this.town = data['address_components']
         .filter(component => component.types[0] == 'neighborhood')
@@ -78,12 +79,11 @@ export class Place {
         .filter(component => component.types[0] == 'postal_code')
         [0]['short_name'];
 
-        this.fullAdddress = `${this.streetNo} ${this.streetName}, Singapore ${this.postCode}`
+        this.fullAdddress = `${this.streetNo} ${this.streetName}, Singapore ${this.postCode}`;
         this.loc = new Coordinates(
             data['geometry']['location']['lat'],
             data['geometry']['location']['lng']
         );
         this.type = data['types'][0];
-    
     }
 }
