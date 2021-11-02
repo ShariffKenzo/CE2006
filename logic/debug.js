@@ -1,4 +1,4 @@
-import * as govData from './govData.mjs';
+import * as govData from './govData.js';
 
 let resourceID =  "f1765b54-a209-4718-8d38-a39237f502b3";
 let params = {}; //testing
