@@ -1,0 +1,29 @@
+.town1{
+    font-size: large;
+    position: absolute;
+    right: 650px;
+    top: 8%;
+    font-size: large;
+    background-color: white;
+    font-weight: bold;
+  }
+  
+  .town2{
+    font-size: large;
+    position: absolute;
+    right: 550px;
+    top: 8%;
+    font-size: large;
+    background-color: white;
+    font-weight: bold; 
+  }
+  
+  .town3{
+    font-size: large;
+    position: absolute;
+    right: 430px;
+    top: 8%;
+    font-size: large;
+    background-color: white;
+    font-weight: bold; 
+  }
