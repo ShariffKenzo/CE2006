@@ -1,10 +1,10 @@
 import fs from 'fs';
 
 //relative file path is from root
-import * as gov from '../logic/govData.js';         //data gov
-import * as maps from '../logic/gMaps.js';          //gmaps
-import * as coord from '../logic/Coordinates.js';   //coords obj
-import * as place from '../logic/Place.js';         //place obj
+import * as gov from '../logic/govData.js';             //data gov
+import * as maps from '../logic/gMaps.js';              //gmaps
+import { Coordinates } from '../logic/Coordinates.js';  //coords obj
+import { Place } from '../logic/Place.js';              //place obj
 
 function readJSON(filePath) {
     let raw = fs.readFileSync(filePath);
@@ -31,6 +31,11 @@ console.log(results);
 
 // a better way to do the above is this:
 // a place object is created and modified directly
-let location1 = new place.Place();
+let location1 = new Place();
 await location1.find(searchString);
 console.log(location1);
+
+// building Place through coordinates
+let location2 = new Place('','',new Coordinates(1.431916, 103.834183));
+location2.build();
+console.log(location2);
