@@ -1,9 +1,8 @@
 import React from "react";
-import { getOverlayDirection } from "react-bootstrap/esm/helpers";
 import Dropdown from "../global/Dropdown";
 import "./PriceEstimatorFilters.css";
 
-import * as gov from "../../logic/govData.js";
+import gov from "../../logic/govData.js";
 
 
 /**
@@ -13,12 +12,12 @@ import * as gov from "../../logic/govData.js";
  */
 
 
-const PriceEstimatorFilters = async (props) => {
+const PriceEstimatorFilters = (props) => {
   
  
     const townDB = ["Pasir Ris", "Bishan", "Pioneer"];
-    //const streetDB = ["Street 11", "Street 41", "Street 12"];
-    var streetDB = await gov.getStreets(props);
+    const streetDB = ["Street 11", "Street 41", "Street 12"];
+    // var streetDB = await gov.getStreets("Bishan");
     const flatTypeDB = [
       "1 Room",
       "2 Room",

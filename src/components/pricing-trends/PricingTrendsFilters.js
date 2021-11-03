@@ -47,13 +47,13 @@ const PricingTrendsFilters = (props) => {
       <Dropdown
         className="town2"
         label="Street"
-        options={streetDB}
+        options={townDB}
         onSelectOption={town2SelectHandler}
       />
       <Dropdown
         className="town3"
         label="Flat Type"
-        options={flatTypeDB}
+        options={townDB}
         onSelectOption={town3SelectHandler}
       />
  {/*    

@@ -36,15 +36,4 @@ const NearbyAmenities = () => {
      </div>  
     )
 }
-
-      <frag>
-        <Backgroundimg />
-      </frag>
-      <frag>
-        <SimpleMap className="Googlemaps" />
-      </frag>
-    </div>
-  );
-};
-
 export default NearbyAmenities;

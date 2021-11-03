@@ -1,0 +1,11 @@
+{
+  "env": {
+    "dev": {
+      "presets": ["es2015"],
+      "plugins": ["@babel/plugin-proposal-private-property-in-object"]
+    },
+    "test": {
+      "presets": ["es2015"]
+    }
+  }
+}

@@ -18,20 +18,16 @@ import PriceEstimatorFilters from "../components/price-estimator/PriceEstimatorF
 const Home = () => {
   return (
     <div>
-     
       <frag>
         <Backgroundimg />
       </frag>
       <frag>
         <Header />
-     </frag>*
-      
-      <frag >
+      </frag>
+
+      <frag>
         <PriceEstimatorFilters />
       </frag>
-      
-
-
 
       <frag>
         <SimpleMap className="Googlemaps" />
@@ -39,7 +35,6 @@ const Home = () => {
       <frag>
         <Table />
       </frag>
-      *
     </div>
   );
 };
