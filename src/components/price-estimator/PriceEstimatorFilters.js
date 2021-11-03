@@ -2,6 +2,9 @@ import React from "react";
 import Dropdown from "../global/Dropdown";
 import "./PriceEstimatorFilters.css";
 
+import * as gov from "../../logic/govData.js";
+
+
 /**
  * Displays the list of filters for Price Esitmator
  * @param {*} props
@@ -9,12 +12,12 @@ import "./PriceEstimatorFilters.css";
  */
 
 
-const PriceEstimatorFilters = (props) => {
+const PriceEstimatorFilters = async (props) => {
   
  
     const townDB = ["Pasir Ris", "Bishan", "Pioneer"];
-    const streetDB = ["Street 11", "Street 41", "Street 12"];
-    //var streetDB = await gov.getStreets(townName);
+    //const streetDB = ["Street 11", "Street 41", "Street 12"];
+    var streetDB = await gov.getStreets(props);
     const flatTypeDB = [
       "1 Room",
       "2 Room",
