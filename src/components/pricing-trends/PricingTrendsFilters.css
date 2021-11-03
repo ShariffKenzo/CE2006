@@ -1,29 +1,46 @@
 .town1{
+   
     font-size: large;
     position: absolute;
-    right: 650px;
     top: 8%;
     font-size: large;
-    background-color: white;
+    background-color: rgb(255, 243, 131,0.5);
     font-weight: bold;
+    right: 48%;
+    border-radius: 20%;
   }
   
   .town2{
+   
     font-size: large;
-    position: absolute;
-    right: 550px;
+    position: absolute;   
     top: 8%;
     font-size: large;
-    background-color: white;
-    font-weight: bold; 
+    background-color: rgb(255, 243, 131,0.5);;
+    font-weight: bold;
+    right: 35%;  
+    border-radius: 20%;
   }
   
   .town3{
     font-size: large;
-    position: absolute;
-    right: 430px;
+    position: absolute;  
     top: 8%;
     font-size: large;
-    background-color: white;
+    background-color: rgb(255, 243, 131,0.5);;
     font-weight: bold; 
+    right:18%;
+    border-radius: 20%;
+  }
+
+  .town4{
+
+    font-size: large;
+    position: absolute; 
+    top: 8%;
+    font-size: large;
+    background-color: rgb(255, 243, 131,0.5);;
+    font-weight: bold; 
+    right: 10%;
+    border-radius: 20%;
   }

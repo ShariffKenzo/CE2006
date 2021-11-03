@@ -24,17 +24,17 @@ const PricingTrends = () => {
 
   return (
     <div>
+      <frag><Backgroundimg /></frag>
       <frag>
         <Header />
       </frag>
-      {/* <frag className ="town"><TownDropdown/></frag>
-        <frag className ="street"><StreetDropdown/></frag>
-        <frag className ="flattype"><FlatTypeDropdown/></frag> */}
-      <PricingTrendsFilters onSelectOptions={selectedTownsHandler}/>
-      <PricingGraph towns={townsToGraph}/>
-      <frag>
-        <Backgroundimg />
+      <frag >
+        <PricingTrendsFilters  onSelectOptions={selectedTownsHandler}/>
       </frag>
+      <frag>
+        <PricingGraph towns={townsToGraph}/>
+      </frag>
+     
     </div>
   );
 };

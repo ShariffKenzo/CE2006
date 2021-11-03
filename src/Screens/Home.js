@@ -12,35 +12,34 @@ import StreetDropdown from "../components/price-estimator/StreetDropdown";
 import FlatTypeDropdown from "../components/price-estimator/FlatTypeDropdown";
 import Testdropdown from "../components/global/TestDropdown";
 import Table from "../components/price-estimator/BlockInfo";
+import PricingTrendsFilters from "../components/pricing-trends/PricingTrendsFilters";
 import PriceEstimatorFilters from "../components/price-estimator/PriceEstimatorFilters";
 
 const Home = () => {
   return (
     <div>
-      <frag>
-        <Header />
-      </frag>
-      {/* <frag className="town">
-        <TownDropdown />
-      </frag>
-      <frag className="street">
-        <StreetDropdown />
-      </frag>
-      <frag className="flattype">
-        <FlatTypeDropdown />
-      </frag> */}
-      <PriceEstimatorFilters/>
-
+     
       <frag>
         <Backgroundimg />
       </frag>
       <frag>
+        <Header />
+     </frag>*
+      
+      <frag >
+        <PriceEstimatorFilters />
+      </frag>
+      
+
+
+
+      <frag>
         <SimpleMap className="Googlemaps" />
       </frag>
-
       <frag>
         <Table />
       </frag>
+      *
     </div>
   );
 };

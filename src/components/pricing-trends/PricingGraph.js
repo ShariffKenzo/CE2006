@@ -5,6 +5,7 @@ import React from "react";
 import { Chart } from "react-charts";
 import { Line } from "react-chartjs-2";
 
+<<<<<<< HEAD
 let db1 =[
   [0, null],
   [1, 1],
@@ -21,6 +22,10 @@ let db2 =[
 ]
 
 const PricingGraph = (props) => {
+=======
+
+const PricingGraph = () => {
+>>>>>>> 6730b2af421ca9f927925c7d99885e0322ee4a00
   const data = React.useMemo(
     () => [
       {
@@ -50,11 +55,10 @@ const PricingGraph = (props) => {
   const lineChart = (
     // A react-chart hyper-responsively and continuously fills the available
     // space of its parent element automatically
-    <div
-      style={{
-        width: "400px",
-        height: "300px",
-      }}
+
+    /// new stuff to add
+    <div style={{ height: '70vh',  width:'70%',  position: 'absolute', left: '50%', top: '60%',
+    transform: 'translate(-50%, -50%)', backgroundColor :'white', }}
     >
       <Chart data={data} axes={axes}/>
     </div>

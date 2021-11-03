@@ -3,6 +3,7 @@ import Dropdown from "../global/Dropdown";
 import "./PricingTrendsFilters.css";
 import { useState } from "react";
 
+
 /**
  * Displays the list of filters for Price Esitmator
  * @param {*} props
@@ -30,27 +31,39 @@ const PricingTrendsFilters = (props) => {
     setTown3(selectedTown3);
     props.onSelectOptions([town1, town2, selectedTown3]);
   };
+  const town4SelectHandler = (selectedTown4) => {
+    console.log(selectedTown4); 
+  };
 
   return (
     <div>
+     
       <Dropdown
         className="town1"
-        label="Town 1"
+        label="Town"
         options={townDB}
         onSelectOption={town1SelectHandler}
       />
       <Dropdown
-        className="town1"
-        label="Town 2"
-        options={townDB}
+        className="town2"
+        label="Street"
+        options={streetDB}
         onSelectOption={town2SelectHandler}
       />
       <Dropdown
         className="town3"
-        label="Town 3"
-        options={townDB}
+        label="Flat Type"
+        options={flatTypeDB}
         onSelectOption={town3SelectHandler}
       />
+ {/*    
+<Dropdown 
+        className="town4"
+        label="Town 4"
+        options={blockDB}
+        onSelectOption={town4SelectHandler}
+      />
+ */}
     </div>
   );
 };

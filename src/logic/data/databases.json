@@ -1,0 +1,16 @@
+{
+    "resource": [
+        {
+            "name": "resale-flat-prices",
+            "id": "f1765b54-a209-4718-8d38-a39237f502b3"
+        },
+        {
+            "name": "median-resale-prices",
+            "id": "a5ddfc4d-0e43-4bfe-8f51-e504e1365e27"
+        },
+        {
+            "name" : "price-range-of-hdb-flats-offered",
+            "id": "d23b9636-5812-4b33-951e-b209de710dd5"
+        }
+    ]
+}
