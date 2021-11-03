@@ -4,6 +4,7 @@
 import React from "react";
 import { Chart } from "react-charts";
 
+
 const PricingGraph = () => {
   const data = React.useMemo(
     () => [
@@ -42,11 +43,10 @@ const PricingGraph = () => {
   const lineChart = (
     // A react-chart hyper-responsively and continuously fills the available
     // space of its parent element automatically
-    <div
-      style={{
-        width: "400px",
-        height: "300px",
-      }}
+
+    /// new stuff to add
+    <div style={{ height: '70vh',  width:'70%',  position: 'absolute', left: '50%', top: '60%',
+    transform: 'translate(-50%, -50%)', backgroundColor :'white', }}
     >
       <Chart data={data} axes={axes} />
     </div>

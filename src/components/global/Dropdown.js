@@ -5,7 +5,9 @@ const Dropdown = (props) => {
     const dropdownChangeHandler = (event) => {
         props.onSelectOption(event.target.value);
     }
-    const classes = "dropdown" + props.className;
+    // removed preset css 
+    //"dropdown" +
+    const classes =  props.className;
   return (
     <div className={classes}>
       <div className={"dropdown__control"+props.className}>

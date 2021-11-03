@@ -12,18 +12,22 @@ import StreetDropdown from "../components/price-estimator/StreetDropdown";
 import FlatTypeDropdown from "../components/price-estimator/FlatTypeDropdown";
 import Testdropdown from "../components/global/TestDropdown";
 import Table from "../components/price-estimator/BlockInfo";
+import PricingTrendsFilters from '../components/pricing-trends/PricingTrendsFilters';
 
 const NearbyAmenities = () => {
     return (
         
      <div>
+    <frag><Backgroundimg /></frag>
      <frag><Header /></frag> 
-     <frag className ="town"><TownDropdown/></frag>
+    {/* <frag className ="town"><TownDropdown/></frag>
      <frag className ="street"><StreetDropdown/></frag>
-     <frag className ="flattype"><FlatTypeDropdown/></frag>
+    <frag className ="flattype"><FlatTypeDropdown/></frag>*/}
      
-     <frag><Backgroundimg /></frag>
+     
+     
      <frag><SimpleMap className="Googlemaps" /></frag>
+     <frag ><PricingTrendsFilters /></frag>
      
      
        

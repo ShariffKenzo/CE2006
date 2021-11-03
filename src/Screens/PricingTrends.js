@@ -18,17 +18,17 @@ import PricingGraph from "../components/pricing-trends/PricingGraph";
 const PricingTrends = () => {
   return (
     <div>
+      <frag><Backgroundimg /></frag>
       <frag>
         <Header />
       </frag>
-      {/* <frag className ="town"><TownDropdown/></frag>
-        <frag className ="street"><StreetDropdown/></frag>
-        <frag className ="flattype"><FlatTypeDropdown/></frag> */}
-      <PricingTrendsFilters />
-      <PricingGraph />
-      <frag>
-        <Backgroundimg />
+      <frag >
+        <PricingTrendsFilters  />
       </frag>
+      <frag>
+        <PricingGraph />
+      </frag>
+     
     </div>
   );
 };

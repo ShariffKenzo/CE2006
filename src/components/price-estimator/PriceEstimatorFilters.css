@@ -1,29 +1,46 @@
-.town{
-    font-size: large;
-    position: absolute;
-    right: 650px;
-    top: 8%;
-    font-size: large;
-    background-color: white;
-    font-weight: bold;
-  }
-  
-  .street{
-    font-size: large;
-    position: absolute;
-    right: 550px;
-    top: 8%;
-    font-size: large;
-    background-color: white;
-    font-weight: bold; 
-  }
-  
-  .flat-type{
-    font-size: large;
-    position: absolute;
-    right: 430px;
-    top: 8%;
-    font-size: large;
-    background-color: white;
-    font-weight: bold; 
-  }
+.Townest{
+   
+  font-size: large;
+  position: absolute;
+  top: 8%;
+  font-size: large;
+  background-color: rgb(255, 243, 131,0.5);
+  font-weight: bold;
+  right: 48%;
+  border-radius: 20%;
+}
+
+.Streetest{
+ 
+  font-size: large;
+  position: absolute;   
+  top: 8%;
+  font-size: large;
+  background-color: rgb(255, 243, 131,0.5);;
+  font-weight: bold;
+  right: 35%;  
+  border-radius: 20%;
+}
+
+.Typreest{
+  font-size: large;
+  position: absolute;  
+  top: 8%;
+  font-size: large;
+  background-color: rgb(255, 243, 131,0.5);;
+  font-weight: bold; 
+  right:18%;
+  border-radius: 20%;
+}
+
+.Blkest{
+
+  font-size: large;
+  position: absolute; 
+  top: 8%;
+  font-size: large;
+  background-color: rgb(255, 243, 131,0.5);;
+  font-weight: bold; 
+  right: 8%;
+  border-radius: 20%;
+}

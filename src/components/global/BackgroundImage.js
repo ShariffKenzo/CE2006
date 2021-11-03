@@ -8,7 +8,8 @@ import Header from "./Header";
  */
 const BackgroundImage = () => {
   return (
-    <div>
+    <div style={{ height: '70vh',  width:'100%',  position: 'absolute', left: '28%', top: '0%',
+    transform: 'translate(-50%, -50%)' }}>
       <img src={logo} alt="Logo" />
     </div>
   );
