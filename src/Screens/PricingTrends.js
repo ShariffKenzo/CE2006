@@ -16,6 +16,12 @@ import Table from "../components/price-estimator/BlockInfo";
 import PricingGraph from "../components/pricing-trends/PricingGraph";
 
 const PricingTrends = () => {
+  let townsToGraph = [null, null, null];
+  const selectedTownsHandler = (towns) => {
+    console.log(towns);
+    townsToGraph = towns
+  }
+
   return (
     <div>
       <frag>
@@ -24,8 +30,8 @@ const PricingTrends = () => {
       {/* <frag className ="town"><TownDropdown/></frag>
         <frag className ="street"><StreetDropdown/></frag>
         <frag className ="flattype"><FlatTypeDropdown/></frag> */}
-      <PricingTrendsFilters />
-      <PricingGraph />
+      <PricingTrendsFilters onSelectOptions={selectedTownsHandler}/>
+      <PricingGraph towns={townsToGraph}/>
       <frag>
         <Backgroundimg />
       </frag>

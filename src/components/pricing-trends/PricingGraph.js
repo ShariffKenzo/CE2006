@@ -3,29 +3,37 @@
  */
 import React from "react";
 import { Chart } from "react-charts";
+import { Line } from "react-chartjs-2";
 
-const PricingGraph = () => {
+let db1 =[
+  [0, null],
+  [1, 1],
+  [2, 5],
+  [3, 1],
+  [4, 4],
+]
+let db2 =[
+  [0, 5],
+  [1, 0.5],
+  [2, 2],
+  [3, 3],
+  [4, 2],
+]
+
+const PricingGraph = (props) => {
   const data = React.useMemo(
     () => [
       {
-        label: "Series 1",
-        data: [
-          [0, 1],
-          [1, 2],
-          [2, 4],
-          [3, 2],
-          [4, 7],
-        ],
+        label: "Bishan",
+        data: db1,
       },
       {
-        label: "Series 2",
-        data: [
-          [0, null],
-          [1, 1],
-          [2, 5],
-          [3, null],
-          [4, 4],
-        ],
+        label: props.towns[1],
+        data: db2,
+      },
+      {
+        label: props.towns[2],
+        data: db1,
       },
     ],
     []
@@ -48,7 +56,7 @@ const PricingGraph = () => {
         height: "300px",
       }}
     >
-      <Chart data={data} axes={axes} />
+      <Chart data={data} axes={axes}/>
     </div>
   );
   return lineChart;

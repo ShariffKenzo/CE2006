@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import "../App.css";
 import Header from "../components/global/Header";
 import Backgroundimg from "../components/global/BackgroundImage";
@@ -14,23 +14,29 @@ import Testdropdown from "../components/global/TestDropdown";
 import Table from "../components/price-estimator/BlockInfo";
 
 const NearbyAmenities = () => {
-    return (
-        
-     <div>
-     <frag><Header /></frag> 
-     <frag className ="town"><TownDropdown/></frag>
-     <frag className ="street"><StreetDropdown/></frag>
-     <frag className ="flattype"><FlatTypeDropdown/></frag>
-     
-     <frag><Backgroundimg /></frag>
-     <frag><SimpleMap className="Googlemaps" /></frag>
-     
-     
-       
- 
- 
-     </div>  
-    )
-}
+  return (
+    <div>
+      <frag>
+        <Header />
+      </frag>
+      <frag className="town">
+        <TownDropdown />
+      </frag>
+      <frag className="street">
+        <StreetDropdown />
+      </frag>
+      <frag className="flattype">
+        <FlatTypeDropdown />
+      </frag>
 
-export default NearbyAmenities
+      <frag>
+        <Backgroundimg />
+      </frag>
+      <frag>
+        <SimpleMap className="Googlemaps" />
+      </frag>
+    </div>
+  );
+};
+
+export default NearbyAmenities;
