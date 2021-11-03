@@ -5,9 +5,8 @@ import React from "react";
 import { Chart } from "react-charts";
 import { Line } from "react-chartjs-2";
 
-<<<<<<< HEAD
 let db1 =[
-  [0, null],
+  [0, null], 
   [1, 1],
   [2, 5],
   [3, 1],
@@ -22,10 +21,6 @@ let db2 =[
 ]
 
 const PricingGraph = (props) => {
-=======
-
-const PricingGraph = () => {
->>>>>>> 6730b2af421ca9f927925c7d99885e0322ee4a00
   const data = React.useMemo(
     () => [
       {
