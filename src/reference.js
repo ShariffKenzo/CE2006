@@ -37,5 +37,5 @@ console.log(location1);
 
 // building Place through coordinates
 let location2 = new Place('','',new Coordinates(1.431916, 103.834183));
-location2.build();
+await location2.build();
 console.log(location2);
