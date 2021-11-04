@@ -6,7 +6,6 @@
  * @author cruzerngz
  */
 
-import fetch from 'node-fetch'; //use import for .mjs files
 const url = "https://data.gov.sg/api/action/datastore_search?"; //data.gov url
 
 /**

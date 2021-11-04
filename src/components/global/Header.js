@@ -3,10 +3,6 @@ import Button from "./Button";
 import { ReactDOM } from "react";
 // link from react router dom
 import { Link } from "react-router-dom";
-import Home from "../../Screens/Home";
-import NearbyAmenities from "../../Screens/NearbyAmenities";
-import PricingTrends from "../../Screens/PricingTrends";
-import { useHistory } from 'react-router-dom';
 
 /**
  * Displays the header 

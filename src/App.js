@@ -1,7 +1,7 @@
 import "./App.css";
 import { ReactDOM } from "react";
 
-import Home from "./Screens/Home";
+import Home from "./components/price-estimator/Home";
 import NearbyAmenities from "./Screens/NearbyAmenities";
 import PricingTrends from "./Screens/PricingTrends";
 import { Route, Link } from "react-router-dom";
