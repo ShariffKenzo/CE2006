@@ -23,3 +23,4 @@ yarn-debug.log*
 yarn-error.log*
 .vscode/settings.json
 logic/data/gMaps.txt
+src/logic/data/gMapsAPI.js

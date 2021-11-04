@@ -6,7 +6,7 @@
 export class Coordinates {
     /**Takes in coordinates in either DMS or DD format
      * @see https://en.wikipedia.org/wiki/Decimal_degrees  
-     * @see https://en.wikipedia.org/wiki/Degree_(angle)#Subdivisions
+     * @see https://en.wikipedia.org/wiki/Degree_(angle)Subdivisions
      * @param lat String/Number, in DD or DMS
      * @param lon String/Number, in DD or DMS
      */
@@ -17,21 +17,21 @@ export class Coordinates {
         this.sLon = '0E';
 
         if (typeof lat == 'number') {
-            this.nLat = this.#DD_DD(lat);
-            this.sLat = this.#DD_DMS(lat, 'N');
+            this.nLat = this.DD_DD(lat);
+            this.sLat = this.DD_DMS(lat, 'N');
         }
         else if (typeof lat == 'string') {
-            this.nLat = this.#DMS_DD(lat);
-            this.sLat = this.#DMS_DMS(lat, 'N');
+            this.nLat = this.DMS_DD(lat);
+            this.sLat = this.DMS_DMS(lat, 'N');
         }
         
         if (typeof lon == 'number') {
-            this.nLon = this.#DD_DD(lon);
-            this.sLon = this.#DD_DMS(lon, 'E');
+            this.nLon = this.DD_DD(lon);
+            this.sLon = this.DD_DMS(lon, 'E');
         }
         else if (typeof lon == 'string') {
-            this.nLon = this.#DMS_DD(lon);
-            this.sLon = this.#DMS_DMS(lon, 'E');
+            this.nLon = this.DMS_DD(lon);
+            this.sLon = this.DMS_DMS(lon, 'E');
         }
     }
 
@@ -68,7 +68,7 @@ export class Coordinates {
      * Parses DD coordinates into the correct format
      * @param {Number} numberIn 
      */
-    #DD_DD(numberIn) {
+    DD_DD(numberIn) {
         return Number(numberIn.toFixed(6));
     }
 
@@ -77,7 +77,7 @@ export class Coordinates {
      * @param {String} stringIn 
      * @param {String} lat_long 
      */
-    #DMS_DMS(stringIn, lat_long) {
+    DMS_DMS(stringIn, lat_long) {
         let regex = /[^0-9.-]/;
         let DMSArray = stringIn.split(regex).filter(x => x);
         let deg = DMSArray[0];
@@ -94,7 +94,7 @@ export class Coordinates {
      * **degrees, minutes, seconds**
      * @returns Number formatted to 6 DP
      */
-    #DMS_DD(stringIn) { //convert to decimal degrees
+    DMS_DD(stringIn) { //convert to decimal degrees
         let regex = /[^0-9.-]/;
         let DMSArray = stringIn.split(regex).filter(x => x);
         var n = Math.abs(Number(DMSArray[0])) + Number(DMSArray[1])/60 + Number(DMSArray[2])/3600;
@@ -113,7 +113,7 @@ export class Coordinates {
      * @param {String} lat_long 'N' or 'E'
      * @returns String formatted DMS coordinates
      */
-    #DD_DMS(numberIn, lat_long) { //convert to degrees, minutes and seconds
+    DD_DMS(numberIn, lat_long) { //convert to degrees, minutes and seconds
         let sign = Math.sign(numberIn); //get the sign
         numberIn = Math.abs(numberIn); //remove the sign
 
