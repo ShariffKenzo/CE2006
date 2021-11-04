@@ -150,9 +150,14 @@ const Home = () => {
       <frag>
         <SimpleMap className="Googlemaps" />
       </frag>
-      <frag>
+      {/*<frag>
         <BlockInfo info = {info}/>
-      </frag>
+      </frag>*/}
+      <div styles={{ height: '500px', overflowY: 'scroll' }} //style={styles.wrapperDiv}
+      >
+      <BlockInfo info = {info}/>
+</div>
+
     </div>
   );
 };

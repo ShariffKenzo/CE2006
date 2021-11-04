@@ -18,7 +18,7 @@ const BlockInfo = (props) => {
     <div className="app-container" style={{ height: '70vh',  width:'10%',  position: 'absolute', left: '58%', top: '57%',
     transform: 'translate(-50%, -50%)' }} >
       <table>
-        <thead>
+        <thead style={{'display': 'block'}}>
           <tr>
             <th>Month</th>
             <th>Town</th>
@@ -33,7 +33,7 @@ const BlockInfo = (props) => {
           </tr>
         </thead>
 
-        <tbody>
+        <tbody style={{'height': '300px', 'overflow':'scroll', 'display': 'block'}}>
           {HDB.map((item) => 
             <tr>
               <td>{item.month}</td>
