@@ -190,7 +190,7 @@ export class Place {
      * @param {Number} max Maximum number of each type to find, default 10
      * @returns JSON array
      */
-    async nearby(radius = 500, max = 2) {
+    async nearby(radius = 500, max = 10) {
         let jsonArr = [ //long boi
             {type:"atm",            places:[]},
             {type:"fire_station",   places:[]},
@@ -220,7 +220,7 @@ export class Place {
                 await jsonArr[i]['places'][j].parse(tempArr[j]);
             }
         }
-        
+
         return jsonArr;
     }
 }
