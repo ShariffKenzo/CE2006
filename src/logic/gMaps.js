@@ -7,7 +7,7 @@ import * as fs from 'fs';
 import fetch from 'node-fetch';
 import { Coordinates } from './Coordinates.js';
 
-let filePath = './logic/data/gMaps.txt' //locally stored API key
+let filePath = './src/logic/data/gMaps.txt' //locally stored API key
 const APIKEY = fs.readFileSync(filePath, 'utf-8');
 
 const geocodeURL = 'https://maps.googleapis.com/maps/api/geocode/json?';
@@ -72,7 +72,8 @@ export async function nearbyPlaces(coords, type, radius=500) {
         key: APIKEY,
         location: `${(coords.nLat)}, ${(coords.nLon)}`,
 		radius: radius,
-		type: type
+		type: type,
+		fields: 'place_id'
     }
 
 	console.log(nearbyURL + new URLSearchParams(params));

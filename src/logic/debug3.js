@@ -1,7 +1,10 @@
 // Debugging Address.js
 import * as add from './Place.js';
-import * as coord from './Coordinates.js';
+import { Coordinates } from './Coordinates.js';
 import * as maps from './gMaps.js';
+
+import fs from 'fs';
+
 
 // let x = new add.Place('', 0, new coord.Coordinates(1.34815,103.69809));
 // await x.build();
@@ -27,8 +30,25 @@ import * as maps from './gMaps.js';
 // let result = cAdd.filter(component => component.types[0] == 'street_number')
 // [0]['short_name'];
 
-let test = await maps.search('church');
-console.log(test);
+
+let places = await maps.nearbyPlaces(new Coordinates(1.378,103.7632),'atm');
+// console.log(places[0])
+console.log(places.length);
+
+let thing = new add.Place('','',new Coordinates(1.378, 103.7632));
+await thing.build();
+console.log(thing);
+let nearby = await thing.nearby();
+
+console.log(nearby);
+const writedata = JSON.stringify(nearby);
+fs.writeFileSync('test.json', writedata);
+
+// thing.parse(places[0])
+// thing.build();
+// console.log(thing);
+
+
 
 
 // console.log(result);
