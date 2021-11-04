@@ -34,12 +34,12 @@ const Home = () => {
     }, [selectedBlock]);
 
     useEffect(() => {
-        var filters = JSON.stringify({
+        var filters = {
             street_name: selectedStreet,
             block: selectedBlock,
             flat_type: selectedFlatType,
-        });
-        isDone && gov.getMain("f1765b54-a209-4718-8d38-a39237f502b3", {}, filters, true).then(setInfo)
+        };
+        isDone && gov.getMain("f1765b54-a209-4718-8d38-a39237f502b3", {}, filters, true).then(response => setInfo(response['records']))
     }, [isDone]);
 
     const townSelectHandler = (town) => {
