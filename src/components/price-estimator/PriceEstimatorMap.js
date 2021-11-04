@@ -31,8 +31,8 @@ const PriceEstimatorMap = (props) => {
             <GoogleMapReact
                 ////// uncomment bootstrap when inputing key "Backend"/////
                 // bootstrapURLKeys={{ key: /* YOUR KEY HERE */ }}
-                defaultCenter={this.props.center}
-                defaultZoom={this.props.zoom}
+                defaultCenter={defaultProps.center}
+                defaultZoom={defaultProps.zoom}
             >
                 <AnyReactComponent
                     lat={59.955413}
