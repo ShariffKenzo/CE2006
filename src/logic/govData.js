@@ -107,6 +107,29 @@ export async function getBlocks(streetName) {
 }
 
 /**
+ * This function exclusively queries the resale-flat-prices dataset
+ * Get the flat types for street and block combination
+ * @param {String} streetName Street name
+ * @param {String} block Block number 
+ * @returns List of flat types for street :: block
+ */
+export async function getFlatType(streetName, block) {
+    let resourceID = "f1765b54-a209-4718-8d38-a39237f502b3";
+    let filters = {
+        street_name: streetName,
+        block: block
+    }
+    let data = await getMain(resourceID, {}, filters, true);
+
+    let total = data['limit'];
+    let floors = [];
+    for(let i=0; i<total; i++) {
+        floors.push(data['records'][i]['flat_type']);
+    }
+    return [...new Set(floors)].sort();
+}
+
+/**
  * This function exclusively queries the resale-flat-prices dataset  
  * @param {string} townName String, name of town to query
  * @param {string} streetName String, name of street to query
@@ -241,16 +264,14 @@ export async function getResaleHistory(town, street='', block='', sortBy='month'
 /**
  * Returns list containing details of nearby HDBs
  * Minimum nummber of HDBs to return are yet to be determined
- * @param {String} town Town name
- * @param {String} street Street name, optional
- * @param {Number} block Block number, optional
+ * @param {String} street Street name
+ * @param {String} block Block number
  * @param {String} sortBy Column to sort values by, ascending
  */
-export async function getSurroundingHDB(town, street='', block='', sortBy) {
+export async function getSurroundingHDB(street, block, sortBy) {
     let resourceID = "f1765b54-a209-4718-8d38-a39237f502b3";
 
     let query = {};
-    if(town) Object.assign(query, {town: town});
     if(street) Object.assign(query,{street_name: street});
     if(block) Object.assign(query, {block: block});
 
