@@ -1,10 +1,15 @@
+
 import React, { Component } from "react";
 import GoogleMapReact from "google-map-react";
+import * as maps from "../../logic/gMaps";
+import APIKEY from "../../logic/data/gMapsAPI";
+
 
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
 /**
  * Renders the Google maps component
  */
+
 const PriceEstimatorMap = (props) => {
     const defaultProps = {
         center: {
@@ -13,8 +18,12 @@ const PriceEstimatorMap = (props) => {
         },
         zoom: 11,
     };
-    const street = props.street
-    const block = props.block
+    var street = props.street;
+    var block = props.block;
+
+    let x = maps.geoCode(street + block);
+
+    console.log(x);
 
     return (
         // Important! Always set the container height explicitly
@@ -31,6 +40,8 @@ const PriceEstimatorMap = (props) => {
             <GoogleMapReact
                 ////// uncomment bootstrap when inputing key "Backend"/////
                 // bootstrapURLKeys={{ key: /* YOUR KEY HERE */ }}
+              
+                
                 defaultCenter={defaultProps.center}
                 defaultZoom={defaultProps.zoom}
             >
@@ -45,3 +56,5 @@ const PriceEstimatorMap = (props) => {
 };
 
 export default PriceEstimatorMap;
+
+

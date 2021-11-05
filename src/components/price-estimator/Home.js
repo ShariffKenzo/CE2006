@@ -9,6 +9,10 @@ import Dropdown from "../global/Dropdown";
 import "./PriceEstimatorFilters.css";
 import TownDB from "./TownDB";
 import * as gov from "../../logic/govData";
+import LocationSearchModal from "./LandingPage";
+
+
+
 
 const Home = () => {
     const [selectedTown, setSelectedTown] = useState("");
@@ -103,18 +107,36 @@ const Home = () => {
                     />
                 </div>
             </frag>
-
+            {/*
             <frag>
                 <SimpleMap className="Googlemaps" street={selectedStreet} block={selectedBlock}/>
-            </frag>
+            </frag>*/}
+            
+
             {/*<frag>
         <BlockInfo info = {info}/>
       </frag>*/}
+
             <div
                 styles={{ height: "500px", overflowY: "scroll" }} //style={styles.wrapperDiv}
             >
                 <BlockInfo info={info} />
-            </div>
+          </div>
+
+
+           <frag style={{
+                height: "70vh",
+                width: "50%",
+                position: "absolute",
+                left: "28%",
+                top: "50%",
+                transform: "translate(-50%, -50%)",
+            }}> <LocationSearchModal/> </frag>
+
+
+
+
+            
         </div>
     );
 };

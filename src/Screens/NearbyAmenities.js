@@ -19,7 +19,7 @@ const NearbyAmenities = () => {
      
      
      
-     <frag><SimpleMap className="Googlemaps" /></frag>
+     {/*<frag><SimpleMap className="Googlemaps" /></frag>*/}
      <frag ><PricingTrendsFilters /></frag>
      
      
