@@ -11,6 +11,7 @@ import TownDB from "./TownDB";
 import * as gov from "../../logic/govData";
 import LocationSearchModal from "./LandingPage";
 import * as gmaps from "../../logic/gMaps";
+import { Coordinates } from "../../logic/Coordinates";
 
 
 
@@ -78,18 +79,25 @@ const Home = () => {
 /////////////////////MAPS PORTTION //////////////////
 
 
-//const [latvar, setLatvar] = useState("");
+//const [coords1, Setcoords1] = useState();
 //const [longvar, setLongvar] = useState("");
 
-//var latvar = (async function geoCode(selectedStreet + selectedBlock))[0];
-//var longvar = (async function geoCode(selectedStreet + selectedBlock))[1];
+//var coords1 = gmaps.addressToCoords({selectedStreet} + {selectedBlock});
+var coords1 =  gmaps.addressToCoords("Pasir Ris Street 11 blk 112");
+    coords1.then();
+
+
+let latvar = coords1.nLat;
+let longvar =   coords1.nLon;
+
+console.log(latvar);
+console.log(longvar);
 
 //useEffect(() => {
 //    latvar && longvar;
-//}, [latvar]);
+//}, [coords1]);
 
- let latvar = 1.3483;
- let longvar =   103.6831;
+ 
 
 /////////////////////MAPS PORTTION //////////////////
   
