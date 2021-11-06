@@ -1,60 +1,47 @@
-
-import React, { Component } from "react";
-import GoogleMapReact from "google-map-react";
-import * as maps from "../../logic/gMaps";
+import * as gmaps from "../../logic/gMaps";
+import { Coordinates } from "../../logic/Coordinates";
+import {
+    withScriptjs,
+    withGoogleMap,
+    GoogleMap,
+    Marker,
+} from "react-google-maps";
+import { useEffect, useRef, useState } from "react";
 import APIKEY from "../../logic/data/gMapsAPI";
 
-
-const AnyReactComponent = ({ text }) => <div>{text}</div>;
-/**
- * Renders the Google maps component
- */
-
 const PriceEstimatorMap = (props) => {
-    const defaultProps = {
-        center: {
-            lat: 1.3483,
-            lng: 103.6831,
-        },
-        zoom: 11,
-    };
-    var street = props.street;
-    var block = props.block;
+    const mapRef = useRef();
+    const [latvar, setLatvar] = useState(1.3483);
+    const [longvar, setLongvar] = useState(103.6831);
 
-    let x = maps.geoCode(street + block);
 
-    console.log(x);
+    useEffect(()=>{
+        console.log(props.street + " blk " + props.block)
+        props.block && gmaps.addressToCoords(props.street + " blk " + props.block).then((response) => {
+            console.log(response)
+            setLatvar(response['nLat']);
+            setLongvar(response['nLon'])
+        })
+    }, [props.block])
 
-    return (
-        // Important! Always set the container height explicitly
-        <div
-            style={{
-                height: "70vh",
-                width: "50%",
-                position: "absolute",
-                left: "28%",
-                top: "60%",
-                transform: "translate(-50%, -50%)",
-            }}
-        >
-            <GoogleMapReact
-                ////// uncomment bootstrap when inputing key "Backend"/////
-                // bootstrapURLKeys={{ key: /* YOUR KEY HERE */ }}
-              
-                
-                defaultCenter={defaultProps.center}
-                defaultZoom={defaultProps.zoom}
+    console.log(latvar);
+    console.log(longvar);
+
+    const PriceEstimatorMap = withScriptjs(
+        withGoogleMap((props) => (
+            <GoogleMap
+                defaultZoom={15}
+                defaultCenter={{ lat: latvar, lng: longvar }}
+                ref={mapRef}
             >
-                <AnyReactComponent
-                    lat={59.955413}
-                    lng={30.337844}
-                    text="My Marker"
-                />
-            </GoogleMapReact>
-        </div>
+                <Marker position={{ lat: latvar, lng: longvar }} />
+            </GoogleMap>
+        ))
     );
+    return <PriceEstimatorMap    googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${APIKEY}&v=3.exp&libraries=geometry,drawing,places`}
+    loadingElement={<div style={{ height: `100%` }} />}
+    containerElement={<div style={{ height: `400px` }} />}
+    mapElement={<div style={{ height: `100%` }} />}/>
 };
 
 export default PriceEstimatorMap;
-
-

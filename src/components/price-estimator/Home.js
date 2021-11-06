@@ -3,26 +3,13 @@ import { useState, useEffect } from "react";
 import "../../App.css";
 import Header from "../global/Header";
 import Backgroundimg from "../global/BackgroundImage";
-import SimpleMap from "./PriceEstimatorMap";
+import PriceEstimatorMap from "./PriceEstimatorMap";
 import BlockInfo from "./BlockInfo";
 import Dropdown from "../global/Dropdown";
 import "./PriceEstimatorFilters.css";
 import TownDB from "./TownDB";
 import * as gov from "../../logic/govData";
-import * as gmaps from "../../logic/gMaps";
-import { Coordinates } from "../../logic/Coordinates";
 import APIKEY from "../../logic/data/gMapsAPI";
-
-
-
-import {
-    withScriptjs,
-    withGoogleMap,
-    GoogleMap,
-    Marker,
-  } from "react-google-maps";
-
-
 
 const Home = () => {
     const [selectedTown, setSelectedTown] = useState("");
@@ -83,15 +70,7 @@ const Home = () => {
 //const [longvar, setLongvar] = useState("");
 
 //var coords1 = gmaps.addressToCoords({selectedStreet} + {selectedBlock});
-var coords1 =  gmaps.addressToCoords("Pasir Ris Street 11 blk 112");
-    coords1.then();
 
-
-let latvar = coords1.nLat;
-let longvar =   coords1.nLon;
-
-console.log(latvar);
-console.log(longvar);
 
 //useEffect(() => {
 //    latvar && longvar;
@@ -115,16 +94,7 @@ console.log(longvar);
       
       */
 //////////////// duplicate test//////////////
-      const MapWithAMarker = withScriptjs(withGoogleMap(props =>
-        <GoogleMap
-          defaultZoom={15}
-          defaultCenter={{ lat:  latvar, lng: longvar}}
-        >
-          <Marker
-            position={{ lat:  latvar, lng: longvar }}
-          />
-        </GoogleMap>
-      ));
+
       
 
 
@@ -214,12 +184,7 @@ console.log(longvar);
                 transform: "translate(-50%, -50%)",
             }}>
 
-<MapWithAMarker
-    googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${APIKEY}&v=3.exp&libraries=geometry,drawing,places`}
-    loadingElement={<div style={{ height: `100%` }} />}
-    containerElement={<div style={{ height: `400px` }} />}
-    mapElement={<div style={{ height: `100%` }} />}
-  />
+<PriceEstimatorMap block={selectedBlock} street={selectedStreet}/>
 
   </frag>
 

@@ -49,13 +49,14 @@ export async function geoCode(address) {
  * @returns Coordinates object
  */
  export async function addressToCoords(address) {
+	console.log(address)
 	var returnCoord;
 	let data = await geoCode(address);
-
+	console.log(data)
 	try {
 		returnCoord = new Coordinates(
-			data['geometry']['location']['lat'],
-            data['geometry']['location']['lng']
+			data[0]['geometry']['location']['lat'],
+            data[0]['geometry']['location']['lng']
 		);
 	} 
 	catch {
