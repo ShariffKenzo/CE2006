@@ -9,9 +9,9 @@ import Dropdown from "../global/Dropdown";
 import "./PriceEstimatorFilters.css";
 import TownDB from "./TownDB";
 import * as gov from "../../logic/govData";
-import LocationSearchModal from "./LandingPage";
 import * as gmaps from "../../logic/gMaps";
 import { Coordinates } from "../../logic/Coordinates";
+import APIKEY from "../../logic/data/gMapsAPI";
 
 
 
@@ -215,7 +215,7 @@ console.log(longvar);
             }}>
 
 <MapWithAMarker
-    googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCTxHMM9lclQOFgoL2-TROLWJnu_8mb7X4&v=3.exp&libraries=geometry,drawing,places"
+    googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${APIKEY}&v=3.exp&libraries=geometry,drawing,places`}
     loadingElement={<div style={{ height: `100%` }} />}
     containerElement={<div style={{ height: `400px` }} />}
     mapElement={<div style={{ height: `100%` }} />}
