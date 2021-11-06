@@ -189,17 +189,22 @@ export async function getMedianHistory(townName, flatType) {
             (t.quarter === item.quarter && t.price === item.price)
         )
     )
+    var priceList=[]
+    data['records'].map((item) => {
+        priceList.push(item["price"]);
+    })
 
-    //generate the returning object
-    let result = {};
+    return priceList;
+    // //generate the returning object
+    // let result = {};
 
-    Object.assign(result, {
-        town: capFirstLetter(townName),
-        flat_type: capFirstLetter(flatType),
-        total: data['records'].length,
-        data: data['records']
-    });
-    return result;
+    // Object.assign(result, {
+    //     town: capFirstLetter(townName),
+    //     flat_type: capFirstLetter(flatType),
+    //     total: data['records'].length,
+    //     data: data['records']
+    // });
+    // return result;
 }
 
 /**

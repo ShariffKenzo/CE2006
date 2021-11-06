@@ -14,7 +14,6 @@ const TownDB = [
     "Jurong East",
     "Jurong West",
     "Kallang/Whampoa",
-    "Lim Chu Kang",
     "Marine Parade",
     "Pasir Ris",
     "Punggol",

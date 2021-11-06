@@ -5,7 +5,6 @@ import Backgroundimg from "../components/global/BackgroundImage";
 import SimpleMap from "../components/price-estimator/PriceEstimatorMap";
 import { ReactDOM } from "react";
 
-import PricingTrendsFilters from '../components/pricing-trends/PricingTrendsFilters';
 
 const NearbyAmenities = () => {
     return (
@@ -19,8 +18,8 @@ const NearbyAmenities = () => {
      
      
      
-     {/*<frag><SimpleMap className="Googlemaps" /></frag>*/}
-     <frag ><PricingTrendsFilters /></frag>
+     <frag><SimpleMap className="Googlemaps" /></frag>
+     <frag ></frag>
      
      
        

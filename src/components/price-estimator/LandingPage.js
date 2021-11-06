@@ -6,8 +6,8 @@ import { Descriptions } from 'antd';
 
 const { MarkerWithLabel } = require("react-google-maps/lib/components/addons/MarkerWithLabel");
 
-////////////////////////////// add APIKEY here ///////////////////////
-Geocode.setApiKey(///"add key here"////);
+////////////////////////////// add APIKEY here in the brackets of setApiKey() below ///////////////////////
+Geocode.setApiKey("AIzaSyCTxHMM9lclQOFgoL2-TROLWJnu_8mb7X4");
 Geocode.enableDebug();
 
 class LocationSearchModal extends React.Component {
@@ -22,10 +22,14 @@ class LocationSearchModal extends React.Component {
         mapPosition: {
             lat: 0,
             lng: 0,
+         //   lat: 1.3483,
+           // long:103.6831
         },
         markerPosition: {
             lat: 0,
             lng: 0,
+          // lat: 1.3483,
+           // long:103.6831,
         }
     }
 
@@ -267,7 +271,7 @@ class LocationSearchModal extends React.Component {
                 </Descriptions>
 
                 <AsyncMap
-                    googleMapURL="https://maps.googleapis.com/maps/api/js?key=&libraries=places"
+                    googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCTxHMM9lclQOFgoL2-TROLWJnu_8mb7X4&libraries=places"
                     loadingElement={
                         <div style={{ height: `100%` }} />
                     }
