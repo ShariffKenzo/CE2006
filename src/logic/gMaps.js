@@ -36,6 +36,30 @@ export async function geoCode(address) {
 }
 
 /**
+ * Converts a given address to a set of coordinates  
+ * Wraps geocode to return only coordinates  
+ * Location restricted to Singapore  
+ * @param {String} address Location in string form
+ * @returns Coordinates object
+ */
+ export async function addressToCoords(address) {
+	var returnCoord;
+	let data = await geoCode(address);
+
+	try {
+		returnCoord = new Coordinates(
+			data['geometry']['location']['lat'],
+            data['geometry']['location']['lng']
+		);
+	} 
+	catch {
+		returnCoord = new Coordinates();
+	}
+
+	return returnCoord;
+}
+
+/**
  * Looks up address based on given coordinates
  * @param {Coordinates} coords Coordinates object
  * @returns JSON array
