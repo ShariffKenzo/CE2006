@@ -1,17 +1,23 @@
 import React from "react";
-import { useState, useEffect } from "react";
-import "../../App.css";
+
 import Header from "../global/Header";
 import Backgroundimg from "../global/BackgroundImage";
-import PriceEstimatorMap from "./PriceEstimatorMap";
-import BlockInfo from "./BlockInfo";
-import Dropdown from "../global/Dropdown";
-import "./PriceEstimatorFilters.css";
-import TownDB from "./TownDB";
+import { useState,useEffect } from "react";
+import PriceEstimatorMap from "../price-estimator/PriceEstimatorMap";
+import BlockInfo from "../price-estimator/BlockInfo";
 import * as gov from "../../logic/govData";
+import Dropdown from "../global/Dropdown";
+import "../price-estimator/PriceEstimatorFilters.css";
+import TownDB from "../price-estimator/TownDB";
+
 import APIKEY from "../../logic/data/gMapsAPI";
 
-const Home = () => {
+
+import { ReactDOM } from "react";
+
+
+
+const NearbyAmenities = () => {
     const [selectedTown, setSelectedTown] = useState("");
     const [streetDB, setStreetDB] = useState([]);
     const [selectedStreet, setSelectedStreet] = useState("");
@@ -62,13 +68,35 @@ const Home = () => {
         setSelectedFlatType(flatType);
         setIsDone(isDone + 1);
     };
-
-
-
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     return (
-        <div>
-            
-            <frag>
+        
+     <div>
+    
+
+
+          
+    <frag>
                 <Backgroundimg />
             </frag>
             <frag>
@@ -130,9 +158,11 @@ const Home = () => {
 
   </frag>
 
-            
-        </div>
-    );
-};
-
-export default Home;
+     
+       
+ 
+ 
+     </div>  
+    )
+}
+export default NearbyAmenities;
