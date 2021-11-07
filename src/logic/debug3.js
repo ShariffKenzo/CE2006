@@ -2,8 +2,10 @@
 import * as add from './Place.js';
 import { Coordinates } from './Coordinates.js';
 import * as maps from './gMaps.js';
+import * as gov from './govData.js';
 
 import fs from 'fs';
+import { getByDisplayValue } from '@testing-library/dom';
 
 
 // let x = new add.Place('', 0, new coord.Coordinates(1.34815,103.69809));
@@ -31,24 +33,15 @@ import fs from 'fs';
 // [0]['short_name'];
 
 
-let places = await maps.nearbyPlaces(new Coordinates(1.378,103.7632),'atm');
-// console.log(places[0])
-console.log(places.length);
+// let places = await maps.nearbyPlaces(new Coordinates(1.378,103.7632),'atm');
+// // console.log(places[0])
+// console.log(places.length);
 
-let thing = new add.Place('','',new Coordinates(1.378, 103.7632));
-await thing.build();
-console.log(thing);
-let nearby = await thing.nearby();
-
-console.log(nearby);
-const writedata = JSON.stringify(nearby);
-fs.writeFileSync('test.json', writedata);
-
-// thing.parse(places[0])
-// thing.build();
+// let thing = new add.Place('choa chu kang ave 4','419');
+// await thing.build();
 // console.log(thing);
+// let nearby = await thing.nearby();
 
-
-
-
-// console.log(result);
+let result = await gov.getMedianHistory('bukit panjang','exec');
+console.log(result);
+console.log(result.length);
