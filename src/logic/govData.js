@@ -199,9 +199,8 @@ export async function getMedianHistory(townName, flatType) {
     let min = data['records'][0]['quarter'];
     let max = data['records'][data['records'].length - 1]['quarter'];
     let regex = /[^0-9]/;
-    min = min.split(regex);
-    max = max.split(regex);
-    console.log(min, max);
+    min = min.split(regex).filter(x => x); //extracting the numbers from quarter
+    max = max.split(regex).filter(x => x); //and removing empty strings
     min = 4 * Number(min[0]) + Number(min[1]);
     max = 4 * Number(max[0]) + Number(max[1]);
     const trueMin = 4 * 2007 + 2;
@@ -210,49 +209,28 @@ export async function getMedianHistory(townName, flatType) {
     console.log(trueMin, min, max, trueMax);
     var returnArr = [];
 
-    //if there is a delta
+    //if there is empty space before
     if(min - trueMin != 0) {
         for(let i=0; i<min - trueMin; i++) {
             returnArr.push(null);
         }
-        for(let j=0; j<data['records'].length; j++) {
-            try{
-                returnArr.push(Number(data['records'][j]['price']));
-            } catch {
-                returnArr.push(null);
-            }
-        }
     }
-    else if(trueMax - max != 0) {
-        for(let j=0; j<data['records'].length; j++) {
-            try{
-                returnArr.push(Number(data['records'][j]['price']));
-            } catch {
-                returnArr.push(null);
-            }
-        }
-        for(let i=0; i<trueMax - max; i++) {
+    //push data normally
+    for(let j=0; j<data['records'].length; j++) {
+        try{
+            returnArr.push(Number(data['records'][j]['price']));
+        } catch {
             returnArr.push(null);
         }
     }
-    //no delta, push normally
-    else if((min-trueMin == 0) && (trueMax-max==0)){
-        for(let j=0; j<data['records'].length; j++) {
-            try{
-                returnArr.push(Number(data['records'][j]['price']));
-            } catch {
-                returnArr.push(null);
-            }
+    //if there is empty space after
+    if(trueMax - max != 0) {
+        for(let k=0; k<trueMax - max; k++) {
+            returnArr.push(null);
         }
     }
 
     return returnArr
-    var priceList=[]
-    data['records'].map((item) => {
-        priceList.push(item["price"]);
-    })
-
-    return priceList;
 }
 
 /**

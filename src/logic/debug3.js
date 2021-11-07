@@ -42,6 +42,6 @@ import { getByDisplayValue } from '@testing-library/dom';
 // console.log(thing);
 // let nearby = await thing.nearby();
 
-let result = await gov.getMedianHistory('choa chu kang','3-room');
+let result = await gov.getMedianHistory('bukit panjang','exec');
 console.log(result);
 console.log(result.length);
