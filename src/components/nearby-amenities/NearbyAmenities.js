@@ -1,21 +1,14 @@
 import React from "react";
 
 import Header from "../global/Header";
-import Backgroundimg from "../global/BackgroundImage";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import PriceEstimatorMap from "../price-estimator/PriceEstimatorMap";
-import BlockInfo from "../price-estimator/BlockInfo";
 import * as gov from "../../logic/govData";
 import Dropdown from "../global/Dropdown";
-import "../price-estimator/PriceEstimatorFilters.css";
+import "../global/DropdownsContainer.css";
 import TownDB from "../price-estimator/TownDB";
 import AmenitiesList from "./AmenitiesList";
-import APIKEY from "../../logic/data/gMapsAPI";
-
-
-import { ReactDOM } from "react";
-
-
+import "../global/ContentContainer.css";
 
 const NearbyAmenities = () => {
     const [selectedTown, setSelectedTown] = useState("");
@@ -37,7 +30,8 @@ const NearbyAmenities = () => {
     }, [selectedStreet]);
 
     useEffect(() => {
-      selectedBlock && gov.getFlatType(selectedStreet, selectedBlock).then(setFlatTypeDB);
+        selectedBlock &&
+            gov.getFlatType(selectedStreet, selectedBlock).then(setFlatTypeDB);
     }, [selectedBlock]);
 
     useEffect(() => {
@@ -46,7 +40,15 @@ const NearbyAmenities = () => {
             block: selectedBlock,
             flat_type: selectedFlatType,
         };
-        isDone && gov.getMain("f1765b54-a209-4718-8d38-a39237f502b3", {}, filters, true).then(response => setInfo(response['records']))
+        isDone &&
+            gov
+                .getMain(
+                    "f1765b54-a209-4718-8d38-a39237f502b3",
+                    {},
+                    filters,
+                    true
+                )
+                .then((response) => setInfo(response["records"]));
     }, [isDone]);
 
     const townSelectHandler = (town) => {
@@ -68,111 +70,46 @@ const NearbyAmenities = () => {
         setSelectedFlatType(flatType);
         setIsDone(isDone + 1);
     };
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     return (
-        
-     <div>
-    
-
-
-          
-    <frag>
-                <Backgroundimg />
-            </frag>
-            <frag>
-                <Header />
-            </frag>
-
-            <frag>
-                <div>
-                    <Dropdown
-                        className="Townest"
-                        label="Town"
-                        options={TownDB}
-                        value={selectedTown}
-                        onSelectOption={townSelectHandler}
-                    />
-                    <Dropdown
-                        className="Streetest"
-                        label="Street"
-                        value={selectedStreet}
-                        options={streetDB}
-                        onSelectOption={streetSelectHandler}
-                    />
-                    <Dropdown
-                        className="Typreest"
-                        label="Block"
-                        value={selectedBlock}
-                        options={blockDB}
-                        onSelectOption={blockSelectHandler}
-                    />
-                    <Dropdown
-                        className="Blkest"
-                        label="Flat Type"
-                        value={selectedFlatType}
-                        options={flatTypeDB}
-                        onSelectOption={flatTypeSelectHandler}
+        <div>
+            <Header />
+            <div className="dropdowns_container">
+                <Dropdown
+                    label="Town"
+                    options={TownDB}
+                    value={selectedTown}
+                    onSelectOption={townSelectHandler}
+                />
+                <Dropdown
+                    label="Street"
+                    value={selectedStreet}
+                    options={streetDB}
+                    onSelectOption={streetSelectHandler}
+                />
+                <Dropdown
+                    label="Block"
+                    value={selectedBlock}
+                    options={blockDB}
+                    onSelectOption={blockSelectHandler}
+                />
+                <Dropdown
+                    label="Flat Type"
+                    value={selectedFlatType}
+                    options={flatTypeDB}
+                    onSelectOption={flatTypeSelectHandler}
+                />
+            </div>
+            <div className="content_container">
+                <div className="myMap">
+                    <PriceEstimatorMap
+                        block={selectedBlock}
+                        street={selectedStreet}
                     />
                 </div>
-            </frag>
-           
-            
-
-           {/* <div
-                styles={{ height: "500px", overflowY: "scroll" }} //style={styles.wrapperDiv}
-            >
-                <BlockInfo info={info} />
-          </div>
-           */}
-
-
-
-            <div
-                styles={{ height: "500px", overflowY: "scroll" }} //style={styles.wrapperDiv}
-            >
-                <AmenitiesList  />
-          </div>
-           
-
-
-<frag style={{
-                height: "70vh",
-                width: "50%",
-                position: "absolute",
-                left: "28%",
-                top: "50%",
-                transform: "translate(-50%, -50%)",
-            }}>
-
-<PriceEstimatorMap block={selectedBlock} street={selectedStreet}/>
-
-  </frag>
-
-     
-       
- 
- 
-     </div>  
-    )
-}
+                <AmenitiesList/>
+            </div>
+        </div>
+    );
+};
 export default NearbyAmenities;

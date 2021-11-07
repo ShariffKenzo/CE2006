@@ -56,7 +56,6 @@ const PricingGraph = (props) => {
     }, [props.flatType, props.town3]);
     
     return (
-        <div>
             <Line
                 data={{
                     labels: Quarters,
@@ -81,10 +80,10 @@ const PricingGraph = (props) => {
                         },
                     ],
                 }}
-                height={200}
-                width={400}
+                // height={"600px"}
+                // width={400}
+                options={{ maintainAspectRatio: false }}
             />
-        </div>
     );
 };
 

@@ -1,0 +1,41 @@
+.my_table {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: 70vh;
+    border-collapse: collapse;
+    table-layout: fixed;
+    overflow: scroll;
+}
+
+.my_table th{
+    border: 1px solid black;
+    text-align: center;
+    padding: 3px;
+    font-size: 15px;
+    background-color: rgb(117, 201, 250);
+    width: 90px;
+    max-width: 90px;
+    min-width: 90px;
+    overflow:hidden;
+    text-transform: capitalize;
+}
+
+.my_table td{
+    border: 1px solid black;
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 12px;
+    background-color: rgba(205, 235, 253, 0.8);
+    width: 90px;
+    max-width: 90px;
+    min-width: 90px;
+    overflow:hidden;
+    text-transform: capitalize;
+}
+
+
+/* styles={{ height: "500px", overflowY: "scroll" }} */
+
+/* style={{'height': '300px', 'overflow':'scroll', 'display': 'block'}} */

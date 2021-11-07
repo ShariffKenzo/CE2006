@@ -2,28 +2,28 @@
  * Cardview that includes names of nearby amenities/travel time/distance
  */
 import React from 'react'
-import "../../App.css";
+import "../global/CustomTable.css";
+
 
 const AmenitiesList = () => {
     return (
      
 
-<div className="app-container" style={{ height: '70vh',  width:'10%',  position: 'absolute', left: '57%', top: '57%',
-    transform: 'translate(-50%, -50%)' }} >
+<div className="my_table">
       <table>
         <thead style={{'display': 'block'}}>
           <tr>
-            <th>atm</th>
-            <th>firestation</th>
-            <th>hospital</th>
-            <th>parking</th>
-            <th>police</th>
-            <th>postoffice</th>
-            <th>shoppingmall</th>
-            <th>supermarket</th>
+            <th>ATM</th>
+            <th>Fire Station</th>
+            <th>Hospital</th>
+            <th>Parking</th>
+            <th>Police</th>
+            <th>Post Office</th>
+            <th>Shopping Mall</th>
+            <th>Super market</th>
             {/*<th>subwaystation</th> not sure whether we need this cuz same as train station   */} 
-            <th>trainstation</th>
-            <th>restaurant</th>
+            <th>Train Station</th>
+            <th>Restaurant</th>
           </tr>
         </thead>
 

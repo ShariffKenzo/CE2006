@@ -1,39 +1,32 @@
 import React from "react";
-import Button from "./Button";
-import { ReactDOM } from "react";
 // link from react router dom
 import { Link } from "react-router-dom";
+import "./Header.css";
 
 /**
- * Displays the header 
+ * Displays the header
  * @returns header component
  */
+
 const Header = () => {
-
-  
-  return (
-    <header className="header">
-      <h1 style={{ color: "black" }}>MyHomeFinder</h1>
-      {/*  <Button color="black" text="$ Price Estimator"  />
-      <Button color="black" text="Nearby Amenities" />
-      <Button color="black" text="Pricing Trends" />
-      <Button color="black" text="Distance" /> */}
-
-      {/*
-      <button className="menubutton" style={{ color: "black" }} onClick ={HomePage()} >$ Price Estimator</button>
-      <button className="menubutton" style={{ color: "black" }} onClick ={NearbyAmenitiesPage()}>Nearby Amenities</button>
-      <button className="menubutton" style={{ color: "black" }} onClick ={PricingTrendsPage()}>Pricing Trends</button>
-      <button className="menubutton" style={{ color: "black" }} >Distance</button>
-      */}
-
-      {/* NOTE :style links as buttons not  button as links */}
-      <Link className="newbuttons"  to = "/">Price Estimator</Link>
-      <Link className="newbuttons" to = "/NearbyAmenities">Nearby Amenties</Link>
-      <Link className="newbuttons"  to = "/PricingTrends">Pricing Trends</Link>
-
-
-    </header>
-  );
+  console.log()
+    return (
+        <div className="nav-bar">
+            <h1 className="title">My Home Finder</h1>
+            {/* NOTE :style links as buttons not  button as links */}
+            <div className="header_menus">
+                <Link className={(window.location.pathname==="/")? "menu_item_selected" : "menu_items"} to="/">
+                    Price Estimator
+                </Link>
+                <Link className={(window.location.pathname==="/NearbyAmenities")? "menu_item_selected" : "menu_items"} to="/NearbyAmenities">
+                    Nearby Amenties
+                </Link>
+                <Link className={(window.location.pathname==="/PricingTrends")? "menu_item_selected" : "menu_items"} to="/PricingTrends">
+                    Pricing Trends
+                </Link>
+            </div>
+        </div>
+    );
 };
 
 export default Header;

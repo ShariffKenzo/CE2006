@@ -1,15 +1,14 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import "../../App.css";
 import Header from "../global/Header";
-import Backgroundimg from "../global/BackgroundImage";
 import PriceEstimatorMap from "./PriceEstimatorMap";
 import BlockInfo from "./BlockInfo";
 import Dropdown from "../global/Dropdown";
-import "./PriceEstimatorFilters.css";
+import "./../global/DropdownsContainer.css";
+import "./../global/Map.css";
 import TownDB from "./TownDB";
 import * as gov from "../../logic/govData";
-import APIKEY from "../../logic/data/gMapsAPI";
+import "../global/ContentContainer.css";
 
 const Home = () => {
     const [selectedTown, setSelectedTown] = useState("");
@@ -31,7 +30,8 @@ const Home = () => {
     }, [selectedStreet]);
 
     useEffect(() => {
-      selectedBlock && gov.getFlatType(selectedStreet, selectedBlock).then(setFlatTypeDB);
+        selectedBlock &&
+            gov.getFlatType(selectedStreet, selectedBlock).then(setFlatTypeDB);
     }, [selectedBlock]);
 
     useEffect(() => {
@@ -40,7 +40,15 @@ const Home = () => {
             block: selectedBlock,
             flat_type: selectedFlatType,
         };
-        isDone && gov.getMain("f1765b54-a209-4718-8d38-a39237f502b3", {}, filters, true).then(response => setInfo(response['records']))
+        isDone &&
+            gov
+                .getMain(
+                    "f1765b54-a209-4718-8d38-a39237f502b3",
+                    {},
+                    filters,
+                    true
+                )
+                .then((response) => setInfo(response["records"]));
     }, [isDone]);
 
     const townSelectHandler = (town) => {
@@ -63,74 +71,44 @@ const Home = () => {
         setIsDone(isDone + 1);
     };
 
-
-
     return (
         <div>
-            
-            <frag>
-                <Backgroundimg />
-            </frag>
-            <frag>
-                <Header />
-            </frag>
-
-            <frag>
-                <div>
-                    <Dropdown
-                        className="Townest"
-                        label="Town"
-                        options={TownDB}
-                        value={selectedTown}
-                        onSelectOption={townSelectHandler}
-                    />
-                    <Dropdown
-                        className="Streetest"
-                        label="Street"
-                        value={selectedStreet}
-                        options={streetDB}
-                        onSelectOption={streetSelectHandler}
-                    />
-                    <Dropdown
-                        className="Typreest"
-                        label="Block"
-                        value={selectedBlock}
-                        options={blockDB}
-                        onSelectOption={blockSelectHandler}
-                    />
-                    <Dropdown
-                        className="Blkest"
-                        label="Flat Type"
-                        value={selectedFlatType}
-                        options={flatTypeDB}
-                        onSelectOption={flatTypeSelectHandler}
+            <Header />
+            <div className="dropdowns_container">
+                <Dropdown
+                    label="Town"
+                    options={TownDB}
+                    value={selectedTown}
+                    onSelectOption={townSelectHandler}
+                />
+                <Dropdown
+                    label="Street"
+                    value={selectedStreet}
+                    options={streetDB}
+                    onSelectOption={streetSelectHandler}
+                />
+                <Dropdown
+                    label="Block"
+                    value={selectedBlock}
+                    options={blockDB}
+                    onSelectOption={blockSelectHandler}
+                />
+                <Dropdown
+                    label="Flat Type"
+                    value={selectedFlatType}
+                    options={flatTypeDB}
+                    onSelectOption={flatTypeSelectHandler}
+                />
+            </div>
+            <div className="content_container">
+                <div className="myMap">
+                    <PriceEstimatorMap
+                        block={selectedBlock}
+                        street={selectedStreet}
                     />
                 </div>
-            </frag>
-           
-            
-
-            <div
-                styles={{ height: "500px", overflowY: "scroll" }} //style={styles.wrapperDiv}
-            >
                 <BlockInfo info={info} />
-          </div>
-
-
-<frag style={{
-                height: "70vh",
-                width: "50%",
-                position: "absolute",
-                left: "28%",
-                top: "50%",
-                transform: "translate(-50%, -50%)",
-            }}>
-
-<PriceEstimatorMap block={selectedBlock} street={selectedStreet}/>
-
-  </frag>
-
-            
+            </div>
         </div>
     );
 };

@@ -1,0 +1,32 @@
+.nav-bar{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background-color: pink;
+    justify-content: space-between;
+}
+
+.title{
+    color: black;
+    padding: 20px;
+    padding-left: 50px;
+}
+
+.header_menus{
+    padding: 20px;
+}
+
+.menu_items{
+    color: black;
+    padding:20px;
+    text-decoration: none;
+    font-size: large;
+}
+
+.menu_item_selected{
+    color:maroon;
+    padding:20px;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: large;
+}

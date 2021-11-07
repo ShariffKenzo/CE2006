@@ -1,0 +1,9 @@
+.dropdowns_container{
+  display: flex;
+  flex-direction: row;
+  padding-left: 20px;
+  padding-top: 2vh;
+  padding-bottom: 2vh;
+  background-color: lightgray;
+  align-items: center;
+}
