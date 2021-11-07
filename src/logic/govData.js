@@ -7,6 +7,7 @@
  */
 
 const url = "https://data.gov.sg/api/action/datastore_search?"; //data.gov url
+//import fetch from "node-fetch";
 
 /**
  * Main function used to fetch from data.gov  
@@ -189,22 +190,69 @@ export async function getMedianHistory(townName, flatType) {
             (t.quarter === item.quarter && t.price === item.price)
         )
     )
+
+    //start date: 2007 Q2
+    //end date: 2020 Q4
+    //expected length: 55
+    //formula for calculating diff:
+    // 4(bigY - smallY) + bigQ - smallQ
+    let min = data['records'][0]['quarter'];
+    let max = data['records'][data['records'].length - 1]['quarter'];
+    let regex = /[^0-9]/;
+    min = min.split(regex);
+    max = max.split(regex);
+    console.log(min, max);
+    min = 4 * Number(min[0]) + Number(min[1]);
+    max = 4 * Number(max[0]) + Number(max[1]);
+    const trueMin = 4 * 2007 + 2;
+    const trueMax = 4 * 2020 + 4;
+
+    console.log(trueMin, min, max, trueMax);
+    var returnArr = [];
+
+    //if there is a delta
+    if(min - trueMin != 0) {
+        for(let i=0; i<min - trueMin; i++) {
+            returnArr.push(null);
+        }
+        for(let j=0; j<data['records'].length; j++) {
+            try{
+                returnArr.push(Number(data['records'][j]['price']));
+            } catch {
+                returnArr.push(null);
+            }
+        }
+    }
+    else if(trueMax - max != 0) {
+        for(let j=0; j<data['records'].length; j++) {
+            try{
+                returnArr.push(Number(data['records'][j]['price']));
+            } catch {
+                returnArr.push(null);
+            }
+        }
+        for(let i=0; i<trueMax - max; i++) {
+            returnArr.push(null);
+        }
+    }
+    //no delta, push normally
+    else if((min-trueMin == 0) && (trueMax-max==0)){
+        for(let j=0; j<data['records'].length; j++) {
+            try{
+                returnArr.push(Number(data['records'][j]['price']));
+            } catch {
+                returnArr.push(null);
+            }
+        }
+    }
+
+    return returnArr
     var priceList=[]
     data['records'].map((item) => {
         priceList.push(item["price"]);
     })
 
     return priceList;
-    // //generate the returning object
-    // let result = {};
-
-    // Object.assign(result, {
-    //     town: capFirstLetter(townName),
-    //     flat_type: capFirstLetter(flatType),
-    //     total: data['records'].length,
-    //     data: data['records']
-    // });
-    // return result;
 }
 
 /**

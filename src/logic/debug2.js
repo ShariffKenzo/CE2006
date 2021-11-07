@@ -8,12 +8,12 @@ function readJSON(filePath) {
     return json;
 }
 
-//filepath is from 1 parent up from root
-// const db = readJSON('./CE2006/logic/data/databases.json');
-// // console.log(process.cwd());
+// filepath is from 1 parent up from root
+const db = readJSON('./src/logic/data/databases.json');
+// console.log(process.cwd());
 
-// let resourceID0 = db.resource[0].id;
-// let resourceID1 = db.resource[1].id;
+let resourceID0 = db.resource[0].id;
+let resourceID1 = db.resource[1].id;
 
 // console.log(resourceID);
 // console.log(db);
@@ -27,7 +27,7 @@ let params = {
         street_name: 'choa chu kang loop',
         //block: '341'
     }),
-    //sort: ['quarter asc']
+    sort: 'month desc'
 }
 let filters = {
     town: 'BEDOK',
@@ -39,7 +39,7 @@ let filters = {
 //let data = await govData.getHistory('Choa Chu Kang','5-room');
 // let query = {q: 'executive'};
 // let data = await govData.getMain(resourceID0, query);
-let data = await govData.getBlocks('bukit panjang','petir rd');//,101);
+//let data = await govData.getBlocks('bukit panjang','petir rd');//,101);
 console.log(data);
 
 let things = {}
