@@ -57,6 +57,7 @@ const PriceEstimatorMap = (props) => {
                 ref={mapRef}
             >
                 <Marker position={{ lat: latvar, lng: longvar }} />
+               {/* <Marker position={{ lat: 1.3496, lng: 103.9568 }} /> add more of this html for atm/malls etc*/}
             </GoogleMap>
         ))
     );

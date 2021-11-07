@@ -9,7 +9,7 @@ import * as gov from "../../logic/govData";
 import Dropdown from "../global/Dropdown";
 import "../price-estimator/PriceEstimatorFilters.css";
 import TownDB from "../price-estimator/TownDB";
-
+import AmenitiesList from "./AmenitiesList";
 import APIKEY from "../../logic/data/gMapsAPI";
 
 
@@ -138,11 +138,21 @@ const NearbyAmenities = () => {
            
             
 
-            <div
+           {/* <div
                 styles={{ height: "500px", overflowY: "scroll" }} //style={styles.wrapperDiv}
             >
                 <BlockInfo info={info} />
           </div>
+           */}
+
+
+
+            <div
+                styles={{ height: "500px", overflowY: "scroll" }} //style={styles.wrapperDiv}
+            >
+                <AmenitiesList  />
+          </div>
+           
 
 
 <frag style={{
