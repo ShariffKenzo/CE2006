@@ -1,33 +1,72 @@
 /**
  * Cardview that includes names of nearby amenities/travel time/distance
  */
-import React from 'react'
-import "../global/CustomTable.css";
+import { isReturnStatement } from "@babel/types";
+import React, { useEffect, useState } from "react";
+import "./Amenities.css";
 
 
-const AmenitiesList = () => {
-    return (
-     
+const Amenitiesh4st = (props) => {
+    console.log(props.nearbyPlaces);
+    const [toRender, setToRender] = useState(false);
 
-<div className="my_table">
-      <table>
-        <thead style={{'display': 'block'}}>
-          <tr>
-            <th>ATM</th>
-            <th>Fire Station</th>
-            <th>Hospital</th>
-            <th>Parking</th>
-            <th>Police</th>
-            <th>Post Office</th>
-            <th>Shopping Mall</th>
-            <th>Super market</th>
-            {/*<th>subwaystation</th> not sure whether we need this cuz same as train station   */} 
-            <th>Train Station</th>
-            <th>Restaurant</th>
-          </tr>
-        </thead>
+    useEffect(() => {
+        props.nearbyPlaces && setToRender(true);
+    }, [props.nearbyPlaces]);
 
-      {/*  <tbody style={{'height': '300px', 'overflow':'scroll', 'display': 'block'}}>
+    if (toRender) {
+        return (
+            <ul className="amenities">
+              <h4>ATM</h4>
+              {props.nearbyPlaces[0]["places"].map(item=><p>{item["name"]}</p>)}
+              <h4>Fire Station</h4>
+              {props.nearbyPlaces[1]["places"].map(item=><p>{item["name"]}</p>)}
+              <h4>Hospital</h4>
+              {props.nearbyPlaces[2]["places"].map(item=><p>{item["name"]}</p>)}
+              <h4>Parking</h4>
+              {props.nearbyPlaces[3]["places"].map(item=><p>{item["name"]}</p>)}
+              <h4>Police</h4>
+              {props.nearbyPlaces[4]["places"].map(item=><p>{item["name"]}</p>)}
+              <h4>Post Office</h4>
+              {props.nearbyPlaces[5]["places"].map(item=><p>{item["name"]}</p>)}
+              <h4>Shopping Mall</h4>
+              {props.nearbyPlaces[6]["places"].map(item=><p>{item["name"]}</p>)}
+              <h4>Supermarket</h4>
+              {props.nearbyPlaces[7]["places"].map(item=><p>{item["name"]}</p>)}
+              <h4>Subway Station</h4>
+              {props.nearbyPlaces[8]["places"].map(item=><p>{item["name"]}</p>)}
+              <h4>Train Station</h4>
+              {props.nearbyPlaces[9]["places"].map(item=><p>{item["name"]}</p>)}
+              <h4>Restaurant</h4>
+              {props.nearbyPlaces[10]["places"].map(item=><p>{item["name"]}</p>)}
+            </ul>
+        );
+    }
+
+    return <div className="instructions">
+      <h6>Pick a Town, Street and Block to see nearby amenities (within 500m)</h6>
+      <p>Then wait patiently as our API retrieves all the info</p>
+    </div>;
+};
+// <div className="my_table">
+//     <table>
+//         <thead style={{ display: "block" }}>
+//             <tr>
+//                 <th>ATM</th>
+//                 <th>Fire Station</th>
+//                 <th>Hospital</th>
+//                 <th>Parking</th>
+//                 <th>Poh4ce</th>
+//                 <th>Post Office</th>
+//                 <th>Shopping Mall</th>
+//                 <th>Super market</th>
+//                 {/*<th>subwaystation</th> not sure whether we need this cuz same as train station   */}
+//                 <th>Train Station</th>
+//                 <th>Restaurant</th>
+//             </tr>
+//         </thead>
+
+/*  <tbody style={{'height': '300px', 'overflow':'scroll', 'display': 'block'}}>
           {HDB.map((item) => 
             <tr>
               <td>{item.month}</td>
@@ -42,11 +81,20 @@ const AmenitiesList = () => {
               <td>{item.resale_price}</td>
             </tr>
           )}
-          </tbody>*/}
-      </table>
-    </div>
+          </tbody>*/
+//     </table>
+// </div>
+// );
 
-    )
-}
+export default Amenitiesh4st;
 
-export default AmenitiesList
+
+// {props.nearbyPlaces.map((item) => {
+//   <h4>item["type"]</h4>;
+//   {
+//       /* <ul>
+//               {item["places"].map((places) => {
+//                   <h4>{places["name"]}</h4>;
+//               })}
+//           </ul> */
+//   }

@@ -9,6 +9,7 @@ import "../global/DropdownsContainer.css";
 import TownDB from "../price-estimator/TownDB";
 import AmenitiesList from "./AmenitiesList";
 import "../global/ContentContainer.css";
+import Place from "../../logic/Place"
 
 const NearbyAmenities = () => {
     const [selectedTown, setSelectedTown] = useState("");
@@ -16,10 +17,8 @@ const NearbyAmenities = () => {
     const [selectedStreet, setSelectedStreet] = useState("");
     const [blockDB, setBlockDB] = useState([]);
     const [selectedBlock, setSelectedBlock] = useState("");
-    const [flatTypeDB, setFlatTypeDB] = useState([]);
-    const [selectedFlatType, setSelectedFlatType] = useState("");
     const [isDone, setIsDone] = useState(0);
-    const [info, setInfo] = useState([]);
+    const [nearby, setNearby] = useState(null);
 
     useEffect(() => {
         selectedTown && gov.getStreets(selectedTown).then(setStreetDB);
@@ -30,44 +29,28 @@ const NearbyAmenities = () => {
     }, [selectedStreet]);
 
     useEffect(() => {
-        selectedBlock &&
-            gov.getFlatType(selectedStreet, selectedBlock).then(setFlatTypeDB);
-    }, [selectedBlock]);
-
-    useEffect(() => {
-        var filters = {
-            street_name: selectedStreet,
-            block: selectedBlock,
-            flat_type: selectedFlatType,
-        };
-        isDone &&
-            gov
-                .getMain(
-                    "f1765b54-a209-4718-8d38-a39237f502b3",
-                    {},
-                    filters,
-                    true
-                )
-                .then((response) => setInfo(response["records"]));
+        const main = async () => {
+            const x = new Place(selectedStreet, selectedBlock);
+            await x.build()
+            const nearbyPlaces = await x.nearby()
+            // console.log(x)
+            // console.log(nearby)
+            setNearby(nearbyPlaces)
+           }
+           selectedStreet && selectedBlock && main();
     }, [isDone]);
 
     const townSelectHandler = (town) => {
         setSelectedTown(town);
         setSelectedStreet("");
         setSelectedBlock("");
-        setSelectedFlatType("");
     };
     const streetSelectHandler = (street) => {
         setSelectedStreet(street);
         setSelectedBlock("");
-        setSelectedFlatType("");
     };
     const blockSelectHandler = (block) => {
         setSelectedBlock(block);
-        setSelectedFlatType("");
-    };
-    const flatTypeSelectHandler = (flatType) => {
-        setSelectedFlatType(flatType);
         setIsDone(isDone + 1);
     };
 
@@ -93,12 +76,6 @@ const NearbyAmenities = () => {
                     options={blockDB}
                     onSelectOption={blockSelectHandler}
                 />
-                <Dropdown
-                    label="Flat Type"
-                    value={selectedFlatType}
-                    options={flatTypeDB}
-                    onSelectOption={flatTypeSelectHandler}
-                />
             </div>
             <div className="content_container">
                 <div className="myMap">
@@ -107,7 +84,7 @@ const NearbyAmenities = () => {
                         street={selectedStreet}
                     />
                 </div>
-                <AmenitiesList/>
+                <AmenitiesList nearbyPlaces={nearby}/>
             </div>
         </div>
     );

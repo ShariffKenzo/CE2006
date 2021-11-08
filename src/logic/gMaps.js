@@ -2,16 +2,10 @@
 *This file will take an address and return the longditude/lattitude of the particular place
 *
 */
-import * as fs from 'fs';
 
-//import fetch from 'node-fetch';
 import { Coordinates } from './Coordinates.js';
-// react can't run fs//////////////////////////////////////
 
-//let filePath = './src/logic/data/gMaps.txt' //locally stored API key
-//const APIKEY = fs.readFileSync(filePath, 'utf-8');
 import APIKEY from './data/gMapsAPI.js';
-//const APIKEY = 
 
 const geocodeURL = 'https://maps.googleapis.com/maps/api/geocode/json?';
 const nearbyURL = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?';
@@ -105,7 +99,7 @@ export async function nearbyPlaces(coords, type, radius=500) {
     }
 
 	console.log(nearbyURL + new URLSearchParams(params));
-	let resp = await fetch(nearbyURL + new URLSearchParams(params));
+	let resp = await fetch("https://gentle-sea-82122.herokuapp.com/" + nearbyURL + new URLSearchParams(params));
 	let json = await resp.json();
 
 	if(json['status'] == 'OK') {
@@ -126,7 +120,7 @@ export async function placeDetails(place_id) {
 	}
 
 	console.log(placeURL + new URLSearchParams(params));
-	let resp = await fetch(placeURL + new URLSearchParams(params));
+	let resp = await fetch("https://gentle-sea-82122.herokuapp.com/" + placeURL + new URLSearchParams(params));
 	let json = await resp.json();
 
 	if(json['status'] == 'OK') {

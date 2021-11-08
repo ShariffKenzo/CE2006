@@ -209,11 +209,13 @@ export class Place {
         //building the array
         for(let i=0; i<jsonArr.length; i++) {
 
-            console.log(jsonArr[i]['type']);
+            // console.log(jsonArr[i]['type']);
             tempArr = await gMaps.nearbyPlaces(this.loc, jsonArr[i]['type'], radius);
-
+            // console.log(tempArr)
             //try to build if there are results
-            try {tempArr.length;} catch {continue;}
+            // try {tempArr.length;} catch {continue;}
+
+            if (tempArr==null) continue;
 
             for(let j=0; j<tempArr.length && j<max; j++) {
                 jsonArr[i]['places'][j] = new Place();
@@ -224,3 +226,5 @@ export class Place {
         return jsonArr;
     }
 }
+
+export default Place;
