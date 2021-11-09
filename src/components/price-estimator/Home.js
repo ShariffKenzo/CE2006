@@ -44,7 +44,7 @@ const Home = () => {
             gov
                 .getMain(
                     "f1765b54-a209-4718-8d38-a39237f502b3",
-                    {},
+                    {sort: "month desc"},
                     filters,
                     true
                 )
