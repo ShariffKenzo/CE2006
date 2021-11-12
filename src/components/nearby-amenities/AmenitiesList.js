@@ -1,11 +1,11 @@
-/**
- * Cardview that includes names of nearby amenities/travel time/distance
- */
-import { isReturnStatement } from "@babel/types";
 import React, { useEffect, useState } from "react";
 import "./Amenities.css";
 
-
+/**
+ * Displays list of all the nearby amenities, within 500m (max 10 amenitites per category)
+ * @param {object} nearbyPlaces - contains all the nearby amenities for a block selected by the user
+ * @returns {JSX.Element} amenties list component
+ */
 const Amenitiesh4st = (props) => {
     console.log(props.nearbyPlaces);
     const [toRender, setToRender] = useState(false);

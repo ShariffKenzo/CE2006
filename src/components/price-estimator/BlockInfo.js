@@ -4,7 +4,8 @@ import "../global/CustomTable.css";
 
 /**
  * Displays the past prices from backend
- * @returns block info component
+ * @param {object} info - contains all the past resale flat prices for the block and flat type selected by the user
+ * @returns {JSX.Element} component with table containing past resale flat transaction details
  */
 const BlockInfo = (props) => {
   const [HDB, setHDB] = useState([]);

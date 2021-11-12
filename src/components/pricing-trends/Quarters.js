@@ -1,3 +1,6 @@
+/**
+ * @type {string[]} contains all the quarters from 2007 Q2 until 2020 Q4
+ */
 const Quarters = [
     "2007-Q2",
     "2007-Q3",

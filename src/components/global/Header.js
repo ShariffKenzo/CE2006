@@ -4,8 +4,9 @@ import { Link } from "react-router-dom";
 import "./Header.css";
 
 /**
- * Displays the header
- * @returns header component
+ * Reusable header or navbar component.
+ * The header is rendered differently depending on the current page the user is in
+ * @returns {JSX.Element} header or navbar
  */
 
 const Header = () => {

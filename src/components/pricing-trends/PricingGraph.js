@@ -1,13 +1,16 @@
-/**
- * Displays y axis: price of HDB in hundreds/ x axis: quarters
- */
 import React, { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
 import * as gov from "../../logic/govData";
 import Quarters from "./Quarters";
-
-// current problems: lagging state, central area only has 6 data points, when the data labels are the same error occurs
-
+/**
+ * Displays a graph comparing the median resale prices for the flat type selected by the user, 
+ * for up to 3 different towns selected by the user.
+ * @param {string} flatType - flat type selected by the user
+ * @param {string} town1 - the first town selected by the user
+ * @param {string} town2 - the second town selected by the user
+ * @param {string} town3 - the third town selected by the user
+ * @returns {JSX.Element} Dynamic graph component
+ */
 const PricingGraph = (props) => {
     const [town1Prices, setTown1Prices] = useState([]);
     const [town2Prices, setTown2Prices] = useState([]);
@@ -19,18 +22,6 @@ const PricingGraph = (props) => {
             gov
                 .getMedianHistory(props.town1, props.flatType)
                 .then(setTown1Prices);
-        // console.log(props.town1);
-        // console.log(props.flatType);
-        // console.log(town1Prices);
-
-        // if (props.flatType == "Executive") {
-        //     props.flatType &&
-        //         props.town1 &&
-        //         gov.getMedianHistory(props.town1, "EXEC").then((response) => {
-        //             response.map((item) => tempPriceList.push(item));
-        //
-        //         });
-        // }
     }, [props.flatType, props.town1]);
     
     useEffect(() => {
@@ -39,9 +30,6 @@ const PricingGraph = (props) => {
             gov
                 .getMedianHistory(props.town2, props.flatType)
                 .then(setTown2Prices);
-        // console.log(props.town2);
-        // console.log(props.flatType);
-        // console.log(town2Prices);
     }, [props.flatType, props.town2]);
 
     useEffect(() => {
@@ -80,8 +68,6 @@ const PricingGraph = (props) => {
                         },
                     ],
                 }}
-                // height={"600px"}
-                // width={400}
                 options={{ maintainAspectRatio: false }}
             />
     );

@@ -1,3 +1,6 @@
+/**
+ * @type {string[]} list of the different towns under the resale flat prices database
+ */
 const TownDB = [
     "Ang Mo Kio",
     "Bedok",

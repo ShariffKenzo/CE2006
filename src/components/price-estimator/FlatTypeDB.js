@@ -1,3 +1,6 @@
+/**
+ * @type {string[]} list of the different flat types under the resale flat prices database
+ */
 const FlatTypeDB = [
     "1 Room",
     "2 Room",

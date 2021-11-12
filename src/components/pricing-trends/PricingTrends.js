@@ -6,7 +6,10 @@ import Dropdown from "../global/Dropdown";
 import PricingGraph from "./PricingGraph";
 import FlatTypeDB from "./FlatTypeDB";
 import "./Graph.css";
-
+/**
+ * Contains all the components for Pricing Trends page
+ * @returns {JSX.Element} Pricing Trends page
+ */
 const PricingTrends = () => {
     const [flatType, setFlatType] = useState("");
     const [town1, setTown1] = useState("");

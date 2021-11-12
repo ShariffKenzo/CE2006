@@ -11,6 +11,10 @@ import AmenitiesList from "./AmenitiesList";
 import "../global/ContentContainer.css";
 import Place from "../../logic/Place"
 
+/**
+ * Contains all the components for Nearby Amenities page
+ * @returns {JSX.Element} Nearby Amenities page
+ */
 const NearbyAmenities = () => {
     const [selectedTown, setSelectedTown] = useState("");
     const [streetDB, setStreetDB] = useState([]);
