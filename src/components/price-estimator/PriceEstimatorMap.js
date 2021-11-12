@@ -8,6 +8,13 @@ import {
 import { useEffect, useRef, useState } from "react";
 import APIKEY from "../../logic/data/gMapsAPI";
 
+
+/**
+ * Displays the google map, automatically updates depending on the street and block user chooses
+ * @param {string} street - street that the user chose
+ * @param {string} block - block that the user chose
+ * @returns 
+ */
 const PriceEstimatorMap = (props) => {
     const mapRef = useRef();
     const [coor, setCoor] = useState({ lat: 1.3483, lng: 103.6831 });

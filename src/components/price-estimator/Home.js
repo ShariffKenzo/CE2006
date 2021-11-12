@@ -10,6 +10,10 @@ import TownDB from "./TownDB";
 import * as gov from "../../logic/govData";
 import "../global/ContentContainer.css";
 
+/**
+ * Contains all the components for Price Estimator/Home page
+ * @returns {JSX.Element} Price Estimator/Home page
+ */
 const Home = () => {
     const [selectedTown, setSelectedTown] = useState("");
     const [streetDB, setStreetDB] = useState([]);
