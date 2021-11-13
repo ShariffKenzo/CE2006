@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/price-estimator/PriceEstimatorMap.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/price-estimator/PriceEstimatorMap.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import * as gmaps from "../../logic/gMaps";
+import {
+    withScriptjs,
+    withGoogleMap,
+    GoogleMap,
+    Marker,
+} from "react-google-maps";
+import { useEffect, useRef, useState } from "react";
+import APIKEY from "../../logic/data/gMapsAPI";
+
+
+/**
+ * Displays the google map, automatically updates depending on the street and block user chooses
+ * @param {string} street - street that the user chose
+ * @param {string} block - block that the user chose
+ * @returns 
+ */
+const PriceEstimatorMap = (props) => {
+    const mapRef = useRef();
+    const [coor, setCoor] = useState({ lat: 1.3483, lng: 103.6831 });
+    const [zoomsize, setZoomsize] = useState(15);
+
+    /// saves coordinates saves the state.  setCoor = function to rerennder; useState(initial parameter)
+
+    useEffect(() => {
+        console.log(props.street + " blk " + props.block);
+        props.block &amp;&amp;
+            gmaps
+                .addressToCoords(props.street + " blk " + props.block)
+                .then((response) => {
+                    console.log(response);
+                    setCoor({ lat: response["nLat"], lng: response["nLon"] });
+                    setZoomsize(18);
+                });
+    }, [props.block]);
+
+    useEffect(() => {
+        props.street &amp;&amp;
+            gmaps.addressToCoords(props.street).then((response) => {
+                console.log(response);
+                setCoor({ lat: response["nLat"], lng: response["nLon"] });
+                setZoomsize(15);
+            });
+    }, [props.street]);
+
+    console.log(coor);
+    const PriceEstimatorMap = withScriptjs(
+        withGoogleMap((props) => (
+            &lt;GoogleMap
+                defaultZoom={zoomsize}
+                defaultCenter={coor}
+                ref={mapRef}
+            >
+                &lt;Marker position={coor} />
+            &lt;/GoogleMap>
+        ))
+    );
+
+    return (
+        &lt;PriceEstimatorMap
+            googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${APIKEY}&amp;v=3.exp&amp;libraries=geometry,drawing,places`}
+            loadingElement={&lt;div style={{ height: `100%` }} />}
+            containerElement={&lt;div style={{ height: `100%` }} />}
+            mapElement={&lt;div style={{ height: `100%` }} />}
+        />
+    );
+};
+
+export default PriceEstimatorMap;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Coordinates.html">Coordinates</a></li><li><a href="Place.html">Place</a></li></ul><h3>Global</h3><ul><li><a href="global.html#addressToCoords">addressToCoords</a></li><li><a href="global.html#Amenitiesh4st">Amenitiesh4st</a></li><li><a href="global.html#BlockInfo">BlockInfo</a></li><li><a href="global.html#capFirstLetter">capFirstLetter</a></li><li><a href="global.html#Dropdown">Dropdown</a></li><li><a href="global.html#FlatTypeDB">FlatTypeDB</a></li><li><a href="global.html#geoCode">geoCode</a></li><li><a href="global.html#get">get</a></li><li><a href="global.html#getBlocks">getBlocks</a></li><li><a href="global.html#getFlatType">getFlatType</a></li><li><a href="global.html#getFloors">getFloors</a></li><li><a href="global.html#getMain">getMain</a></li><li><a href="global.html#getMedianHistory">getMedianHistory</a></li><li><a href="global.html#getResaleHistory">getResaleHistory</a></li><li><a href="global.html#getStreets">getStreets</a></li><li><a href="global.html#getSurroundingHDB">getSurroundingHDB</a></li><li><a href="global.html#getTownHistoryTrend">getTownHistoryTrend</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#Home">Home</a></li><li><a href="global.html#NearbyAmenities">NearbyAmenities</a></li><li><a href="global.html#nearbyPlaces">nearbyPlaces</a></li><li><a href="global.html#placeDetails">placeDetails</a></li><li><a href="global.html#PriceEstimatorMap">PriceEstimatorMap</a></li><li><a href="global.html#PricingGraph">PricingGraph</a></li><li><a href="global.html#PricingTrends">PricingTrends</a></li><li><a href="global.html#Quarters">Quarters</a></li><li><a href="global.html#revgeoCode">revgeoCode</a></li><li><a href="global.html#search">search</a></li><li><a href="global.html#TownDB">TownDB</a></li><li><a href="global.html#url">url</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Sat Nov 13 2021 19:24:29 GMT+0800 (Singapore Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

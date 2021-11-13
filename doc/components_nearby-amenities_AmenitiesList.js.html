@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/nearby-amenities/AmenitiesList.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/nearby-amenities/AmenitiesList.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useEffect, useState } from "react";
+import "./Amenities.css";
+
+/**
+ * Displays list of all the nearby amenities, within 500m (max 10 amenitites per category)
+ * @param {object} nearbyPlaces - contains all the nearby amenities for a block selected by the user
+ * @returns {JSX.Element} amenties list component
+ */
+const Amenitiesh4st = (props) => {
+    console.log(props.nearbyPlaces);
+    const [toRender, setToRender] = useState(false);
+
+    useEffect(() => {
+        props.nearbyPlaces &amp;&amp; setToRender(true);
+    }, [props.nearbyPlaces]);
+
+    if (toRender) {
+        return (
+            &lt;ul className="amenities">
+              &lt;h4>ATM&lt;/h4>
+              {props.nearbyPlaces[0]["places"].map(item=>&lt;p>{item["name"]}&lt;/p>)}
+              &lt;h4>Fire Station&lt;/h4>
+              {props.nearbyPlaces[1]["places"].map(item=>&lt;p>{item["name"]}&lt;/p>)}
+              &lt;h4>Hospital&lt;/h4>
+              {props.nearbyPlaces[2]["places"].map(item=>&lt;p>{item["name"]}&lt;/p>)}
+              &lt;h4>Parking&lt;/h4>
+              {props.nearbyPlaces[3]["places"].map(item=>&lt;p>{item["name"]}&lt;/p>)}
+              &lt;h4>Police&lt;/h4>
+              {props.nearbyPlaces[4]["places"].map(item=>&lt;p>{item["name"]}&lt;/p>)}
+              &lt;h4>Post Office&lt;/h4>
+              {props.nearbyPlaces[5]["places"].map(item=>&lt;p>{item["name"]}&lt;/p>)}
+              &lt;h4>Shopping Mall&lt;/h4>
+              {props.nearbyPlaces[6]["places"].map(item=>&lt;p>{item["name"]}&lt;/p>)}
+              &lt;h4>Supermarket&lt;/h4>
+              {props.nearbyPlaces[7]["places"].map(item=>&lt;p>{item["name"]}&lt;/p>)}
+              &lt;h4>Subway Station&lt;/h4>
+              {props.nearbyPlaces[8]["places"].map(item=>&lt;p>{item["name"]}&lt;/p>)}
+              &lt;h4>Train Station&lt;/h4>
+              {props.nearbyPlaces[9]["places"].map(item=>&lt;p>{item["name"]}&lt;/p>)}
+              &lt;h4>Restaurant&lt;/h4>
+              {props.nearbyPlaces[10]["places"].map(item=>&lt;p>{item["name"]}&lt;/p>)}
+            &lt;/ul>
+        );
+    }
+
+    return &lt;div className="instructions">
+      &lt;h6>Pick a Town, Street and Block to see nearby amenities (within 500m)&lt;/h6>
+      &lt;p>Then wait patiently as our API retrieves all the info&lt;/p>
+    &lt;/div>;
+};
+// &lt;div className="my_table">
+//     &lt;table>
+//         &lt;thead style={{ display: "block" }}>
+//             &lt;tr>
+//                 &lt;th>ATM&lt;/th>
+//                 &lt;th>Fire Station&lt;/th>
+//                 &lt;th>Hospital&lt;/th>
+//                 &lt;th>Parking&lt;/th>
+//                 &lt;th>Poh4ce&lt;/th>
+//                 &lt;th>Post Office&lt;/th>
+//                 &lt;th>Shopping Mall&lt;/th>
+//                 &lt;th>Super market&lt;/th>
+//                 {/*&lt;th>subwaystation&lt;/th> not sure whether we need this cuz same as train station   */}
+//                 &lt;th>Train Station&lt;/th>
+//                 &lt;th>Restaurant&lt;/th>
+//             &lt;/tr>
+//         &lt;/thead>
+
+/*  &lt;tbody style={{'height': '300px', 'overflow':'scroll', 'display': 'block'}}>
+          {HDB.map((item) => 
+            &lt;tr>
+              &lt;td>{item.month}&lt;/td>
+              &lt;td>{item.town}&lt;/td>
+              &lt;td>{item.flat_type}&lt;/td>
+              &lt;td>{item.block}&lt;/td>
+              &lt;td>{item.street_name}&lt;/td>
+              &lt;td>{item.storey_range}&lt;/td>
+              &lt;td>{item.floor_area_sqm}&lt;/td>
+              &lt;td>{item.flat_model}&lt;/td>
+              &lt;td>{item.lease_commence_date}&lt;/td>
+              &lt;td>{item.resale_price}&lt;/td>
+            &lt;/tr>
+          )}
+          &lt;/tbody>*/
+//     &lt;/table>
+// &lt;/div>
+// );
+
+export default Amenitiesh4st;
+
+
+// {props.nearbyPlaces.map((item) => {
+//   &lt;h4>item["type"]&lt;/h4>;
+//   {
+//       /* &lt;ul>
+//               {item["places"].map((places) => {
+//                   &lt;h4>{places["name"]}&lt;/h4>;
+//               })}
+//           &lt;/ul> */
+//   }</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Coordinates.html">Coordinates</a></li><li><a href="Place.html">Place</a></li></ul><h3>Global</h3><ul><li><a href="global.html#addressToCoords">addressToCoords</a></li><li><a href="global.html#Amenitiesh4st">Amenitiesh4st</a></li><li><a href="global.html#BlockInfo">BlockInfo</a></li><li><a href="global.html#capFirstLetter">capFirstLetter</a></li><li><a href="global.html#Dropdown">Dropdown</a></li><li><a href="global.html#FlatTypeDB">FlatTypeDB</a></li><li><a href="global.html#geoCode">geoCode</a></li><li><a href="global.html#get">get</a></li><li><a href="global.html#getBlocks">getBlocks</a></li><li><a href="global.html#getFlatType">getFlatType</a></li><li><a href="global.html#getFloors">getFloors</a></li><li><a href="global.html#getMain">getMain</a></li><li><a href="global.html#getMedianHistory">getMedianHistory</a></li><li><a href="global.html#getResaleHistory">getResaleHistory</a></li><li><a href="global.html#getStreets">getStreets</a></li><li><a href="global.html#getSurroundingHDB">getSurroundingHDB</a></li><li><a href="global.html#getTownHistoryTrend">getTownHistoryTrend</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#Home">Home</a></li><li><a href="global.html#NearbyAmenities">NearbyAmenities</a></li><li><a href="global.html#nearbyPlaces">nearbyPlaces</a></li><li><a href="global.html#placeDetails">placeDetails</a></li><li><a href="global.html#PriceEstimatorMap">PriceEstimatorMap</a></li><li><a href="global.html#PricingGraph">PricingGraph</a></li><li><a href="global.html#PricingTrends">PricingTrends</a></li><li><a href="global.html#Quarters">Quarters</a></li><li><a href="global.html#revgeoCode">revgeoCode</a></li><li><a href="global.html#search">search</a></li><li><a href="global.html#TownDB">TownDB</a></li><li><a href="global.html#url">url</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Sat Nov 13 2021 19:24:29 GMT+0800 (Singapore Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

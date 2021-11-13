@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/price-estimator/Home.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/price-estimator/Home.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React from "react";
+import { useState, useEffect } from "react";
+import Header from "../global/Header";
+import PriceEstimatorMap from "./PriceEstimatorMap";
+import BlockInfo from "./BlockInfo";
+import Dropdown from "../global/Dropdown";
+import "./../global/DropdownsContainer.css";
+import "./../global/Map.css";
+import TownDB from "./TownDB";
+import * as gov from "../../logic/govData";
+import "../global/ContentContainer.css";
+
+/**
+ * Contains all the components for Price Estimator/Home page
+ * @returns {JSX.Element} Price Estimator/Home page
+ */
+const Home = () => {
+    const [selectedTown, setSelectedTown] = useState("");
+    const [streetDB, setStreetDB] = useState([]);
+    const [selectedStreet, setSelectedStreet] = useState("");
+    const [blockDB, setBlockDB] = useState([]);
+    const [selectedBlock, setSelectedBlock] = useState("");
+    const [flatTypeDB, setFlatTypeDB] = useState([]);
+    const [selectedFlatType, setSelectedFlatType] = useState("");
+    const [isDone, setIsDone] = useState(0);
+    const [info, setInfo] = useState([]);
+
+    useEffect(() => {
+        selectedTown &amp;&amp; gov.getStreets(selectedTown).then(setStreetDB);
+    }, [selectedTown]);
+
+    useEffect(() => {
+        selectedStreet &amp;&amp; gov.getBlocks(selectedStreet).then(setBlockDB);
+    }, [selectedStreet]);
+
+    useEffect(() => {
+        selectedBlock &amp;&amp;
+            gov.getFlatType(selectedStreet, selectedBlock).then(setFlatTypeDB);
+    }, [selectedBlock]);
+
+    useEffect(() => {
+        var filters = {
+            street_name: selectedStreet,
+            block: selectedBlock,
+            flat_type: selectedFlatType,
+        };
+        isDone &amp;&amp;
+            gov
+                .getMain(
+                    "f1765b54-a209-4718-8d38-a39237f502b3",
+                    {sort: "month desc"},
+                    filters,
+                    true
+                )
+                .then((response) => setInfo(response["records"]));
+    }, [isDone]);
+
+    const townSelectHandler = (town) => {
+        setSelectedTown(town);
+        setSelectedStreet("");
+        setSelectedBlock("");
+        setSelectedFlatType("");
+    };
+    const streetSelectHandler = (street) => {
+        setSelectedStreet(street);
+        setSelectedBlock("");
+        setSelectedFlatType("");
+    };
+    const blockSelectHandler = (block) => {
+        setSelectedBlock(block);
+        setSelectedFlatType("");
+    };
+    const flatTypeSelectHandler = (flatType) => {
+        setSelectedFlatType(flatType);
+        setIsDone(isDone + 1);
+    };
+
+    return (
+        &lt;div>
+            &lt;Header />
+            &lt;div className="dropdowns_container">
+                &lt;Dropdown
+                    label="Town"
+                    options={TownDB}
+                    value={selectedTown}
+                    onSelectOption={townSelectHandler}
+                />
+                &lt;Dropdown
+                    label="Street"
+                    value={selectedStreet}
+                    options={streetDB}
+                    onSelectOption={streetSelectHandler}
+                />
+                &lt;Dropdown
+                    label="Block"
+                    value={selectedBlock}
+                    options={blockDB}
+                    onSelectOption={blockSelectHandler}
+                />
+                &lt;Dropdown
+                    label="Flat Type"
+                    value={selectedFlatType}
+                    options={flatTypeDB}
+                    onSelectOption={flatTypeSelectHandler}
+                />
+            &lt;/div>
+            &lt;div className="content_container">
+                &lt;div className="myMap">
+                    &lt;PriceEstimatorMap
+                        block={selectedBlock}
+                        street={selectedStreet}
+                    />
+                &lt;/div>
+                &lt;BlockInfo info={info} />
+            &lt;/div>
+        &lt;/div>
+    );
+};
+
+export default Home;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Coordinates.html">Coordinates</a></li><li><a href="Place.html">Place</a></li></ul><h3>Global</h3><ul><li><a href="global.html#addressToCoords">addressToCoords</a></li><li><a href="global.html#Amenitiesh4st">Amenitiesh4st</a></li><li><a href="global.html#BlockInfo">BlockInfo</a></li><li><a href="global.html#capFirstLetter">capFirstLetter</a></li><li><a href="global.html#Dropdown">Dropdown</a></li><li><a href="global.html#FlatTypeDB">FlatTypeDB</a></li><li><a href="global.html#geoCode">geoCode</a></li><li><a href="global.html#get">get</a></li><li><a href="global.html#getBlocks">getBlocks</a></li><li><a href="global.html#getFlatType">getFlatType</a></li><li><a href="global.html#getFloors">getFloors</a></li><li><a href="global.html#getMain">getMain</a></li><li><a href="global.html#getMedianHistory">getMedianHistory</a></li><li><a href="global.html#getResaleHistory">getResaleHistory</a></li><li><a href="global.html#getStreets">getStreets</a></li><li><a href="global.html#getSurroundingHDB">getSurroundingHDB</a></li><li><a href="global.html#getTownHistoryTrend">getTownHistoryTrend</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#Home">Home</a></li><li><a href="global.html#NearbyAmenities">NearbyAmenities</a></li><li><a href="global.html#nearbyPlaces">nearbyPlaces</a></li><li><a href="global.html#placeDetails">placeDetails</a></li><li><a href="global.html#PriceEstimatorMap">PriceEstimatorMap</a></li><li><a href="global.html#PricingGraph">PricingGraph</a></li><li><a href="global.html#PricingTrends">PricingTrends</a></li><li><a href="global.html#Quarters">Quarters</a></li><li><a href="global.html#revgeoCode">revgeoCode</a></li><li><a href="global.html#search">search</a></li><li><a href="global.html#TownDB">TownDB</a></li><li><a href="global.html#url">url</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Sat Nov 13 2021 19:24:29 GMT+0800 (Singapore Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
